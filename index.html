@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈 - Pro Scripts</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --card-bg: #161616;
+            --primary-red: #ff1e1e;
+            --dark-red: #8b0000;
+            --text-color: #ffffff;
+            --gray-text: #b0b0b0;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: var(--primary-red);
+            font-size: 24px;
+            text-shadow: 0 0 15px rgba(255, 30, 30, 0.6);
+            margin-bottom: 5px;
+        }
+        .container {
+            width: 100%;
+            max-width: 450px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 2px solid var(--dark-red);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 20px rgba(255, 30, 30, 0.15);
+            transition: 0.3s;
+        }
+        .card:hover {
+            border-color: var(--primary-red);
+            box-shadow: 0 4px 25px rgba(255, 30, 30, 0.3);
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .btn {
+            background: linear-gradient(45deg, var(--dark-red), var(--primary-red));
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(255, 30, 30, 0.4);
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .footer-support {
+            margin-top: 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+        }
+        .support-btn {
+            display: block;
+            background: #0088cc;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .whatsapp-btn {
+            background: #25d366;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h1>
+        <p style="color: var(--gray-text); font-size: 14px;">EXCLUSIVE QUOTEX SCRIPT SUITE</p>
+    </div>
+
+    <div class="container">
+        <!-- Script 1 -->
+        <div class="card">
+            <div class="card-title">SCRIPT #1: QX LIVE & WIN/LOSS CODE</div>
+            <button class="btn" onclick="openScript('QX Live Code')">Open Script</button>
+        </div>
+
+        <!-- Script 2 -->
+        <div class="card">
+            <div class="card-title">SCRIPT #2: PAYMENTS & DEPOSIT/WITHDRAWAL SYSTEM</div>
+            <button class="btn" onclick="openScript('Payments System')">Open Script</button>
+        </div>
+
+        <!-- Script 3 -->
+        <div class="card">
+            <div class="card-title">SCRIPT #3: ANDROID & IPHONE FEEDBACKS</div>
+            <button class="btn" onclick="openScript('Feedbacks Generator')">Open Script</button>
+        </div>
+
+        <!-- Script 4 -->
+        <div class="card">
+            <div class="card-title">SCRIPT #4: QX PARTNER & BINANCE EMAIL SS</div>
+            <button class="btn" onclick="openScript('Partner & Binance SS')">Open Script</button>
+        </div>
+    </div>
+
+    <div class="footer-support">
+        <a href="https://t.me/MK_HACKER586" class="support-btn" target="_blank">🚀 Telegram @MK_HACKER586</a>
+        <a href="https://wa.me/923096172381" class="support-btn whatsapp-btn" target="_blank">💬 WhatsApp Support</a>
+    </div>
+
+    <script>
+        function openScript(scriptName) {
+            // Tracking function jo user ki info Telegram bot ko bhejega
+            sendTrackingAlert(scriptName);
+            alert("Access Granted for " + scriptName + "!");
+        }
+
+        function sendTrackingAlert(scriptName) {
+            const deviceInfo = navigator.userAgent;
+            const platform = navigator.platform;
+            
+            // Aapke Telegram Bot par alert bhejne ke liye fetch request
+            const botToken = "8567527528:AAHPavhyxDBFDFImZph7gyGvj9PvdVUAuZw"; 
+            const chatId = "YOUR_ADMIN_CHAT_ID"; // Yahan apni Telegram numeric ID daal dein
+            
+            const message = `🚨 NEW SCRIPT ACCESS!\n👤 Brand: M.K HACKER\n⚙️ Script: ${scriptName}\n💻 Device: ${deviceInfo}\n🌍 Platform: ${platform}`;
+            
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+            .catch(err => console.log("Tracking sent"));
+        }
+    </script>
+</body>
+</html>
