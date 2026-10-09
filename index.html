@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈 - Pro Scripts</title>
+    <title>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈</title>
     <style>
         :root {
             --bg-color: #0b0b0b;
@@ -29,7 +29,7 @@
         }
         .header h1 {
             color: var(--primary-red);
-            font-size: 24px;
+            font-size: 21px;
             text-shadow: 0 0 15px rgba(255, 30, 30, 0.6);
             margin-bottom: 5px;
         }
@@ -51,7 +51,7 @@
             box-shadow: 0 4px 25px rgba(255, 30, 30, 0.3);
         }
         .card-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             margin-bottom: 10px;
             color: var(--text-color);
@@ -95,8 +95,8 @@
 <body>
 
     <div class="header">
-        <h1>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h1>
-        <p style="color: var(--gray-text); font-size: 14px;">EXCLUSIVE QUOTEX SCRIPT SUITE</p>
+        <h1>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈</h1>
+        <p style="color: var(--gray-text); font-size: 13px;">EXCLUSIVE QUOTEX & FEEDBACK SUITE</p>
     </div>
 
     <div class="container">
@@ -132,7 +132,6 @@
 
     <script>
         function openScript(scriptName) {
-            // Tracking function jo user ki info Telegram bot ko bhejega
             sendTrackingAlert(scriptName);
             alert("Access Granted for " + scriptName + "!");
         }
@@ -141,11 +140,10 @@
             const deviceInfo = navigator.userAgent;
             const platform = navigator.platform;
             
-            // Aapke Telegram Bot par alert bhejne ke liye fetch request
-            const botToken = "8567527528:AAHPavhyxDBFDFImZph7gyGvj9PvdVUAuZw"; 
-            const chatId = "8791893329"; // Yahan apni Telegram numeric ID daal dein
+            const botToken = "8606951360:AAEoRPl7-ybe2pEMbrjivvC1G68sLMDrWxE"; 
+            const chatId = "8791893329"; 
             
-            const message = `🚨 NEW SCRIPT ACCESS!\n👤 Brand: M.K HACKER\n⚙️ Script: ${scriptName}\n💻 Device: ${deviceInfo}\n🌍 Platform: ${platform}`;
+            const message = `🚨 NEW SCRIPT ACCESS!\n👤 Brand: M.K HACKER\n🤖 Bot: M.K SCRIPTS TRACKER BOT\n⚙️ Script: ${scriptName}\n💻 Device: ${deviceInfo}\n🌍 Platform: ${platform}`;
             
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
             .catch(err => console.log("Tracking sent"));
