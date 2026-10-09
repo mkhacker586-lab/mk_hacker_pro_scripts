@@ -6,15 +6,17 @@
     <title>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈</title>
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #2b0000 0%, #0d0d0d 50%, #1a0000 100%);
+            --bg-color: #0b0b0b;
             --card-bg: #ffffff;
             --text-dark: #111111;
             --primary-red: #ff1e1e;
             --dark-red: #8b0000;
-            --neon-glow: rgba(255, 30, 30, 0.35);
+            --neon-glow: rgba(255, 30, 30, 0.6);
         }
         body {
-            background: var(--bg-gradient);
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 90% 10%, rgba(255, 30, 30, 0.15) 0%, transparent 40%),
+                              radial-gradient(circle at 10% 90%, rgba(139, 0, 0, 0.2) 0%, transparent 40%);
             background-attachment: fixed;
             color: #ffffff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -27,26 +29,36 @@
         .header {
             text-align: center;
             margin: 20px 0;
+            position: relative;
         }
-        .main-logo {
-            width: 75px;
-            height: 75px;
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+        .logo-box {
+            width: 85px;
+            height: 85px;
+            background: #ffffff;
             border-radius: 50%;
-            margin: 0 auto 12px auto;
+            margin: 0 auto 15px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px var(--neon-glow);
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-            border: 2px solid #ff4d4d;
+            box-shadow: 0 0 25px var(--neon-glow);
+            border: 3px solid var(--primary-red);
+            animation: pulseGlow 2s infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 15px rgba(255, 30, 30, 0.4); }
+            100% { box-shadow: 0 0 30px rgba(255, 30, 30, 0.9); }
+        }
+        .logo-box span {
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 22px;
+            font-weight: 900;
         }
         h1 {
             color: var(--primary-red);
             font-size: 18px;
-            text-shadow: 0 0 12px var(--neon-glow);
+            text-shadow: 0 0 15px var(--neon-glow);
             margin: 5px 0;
             letter-spacing: 0.5px;
         }
@@ -58,7 +70,7 @@
             background: var(--card-bg);
             color: var(--text-dark);
             border-radius: 24px;
-            padding: 18px;
+            padding: 20px;
             margin-bottom: 16px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -66,8 +78,8 @@
             transition: 0.3s;
         }
         .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(255, 30, 30, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 30, 30, 0.3);
         }
         .card::after {
             content: '';
@@ -76,14 +88,14 @@
             right: 0;
             width: 110px;
             height: 110px;
-            background: radial-gradient(circle, rgba(255,30,30,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,30,30,0.2) 0%, transparent 70%);
             border-radius: 50%;
         }
         .card-icon {
             width: 45px;
             height: 45px;
             background: #f4f4f4;
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -94,7 +106,7 @@
         .script-number {
             font-weight: 800;
             font-size: 12px;
-            color: #666;
+            color: #555;
             margin-bottom: 2px;
             letter-spacing: 0.5px;
         }
@@ -102,7 +114,7 @@
             font-weight: bold;
             font-size: 15px;
             color: #111;
-            margin-bottom: 14px;
+            margin-bottom: 15px;
         }
         .open-btn {
             background: linear-gradient(45deg, var(--dark-red), var(--primary-red));
@@ -136,94 +148,103 @@
             box-shadow: 0 4px 15px var(--neon-glow);
         }
         
-        /* Popup Interface Modal */
+        /* Bada Clean Popup Interface (Modal) */
         .modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.88);
             z-index: 999;
             justify-content: center;
             align-items: center;
             padding: 15px;
+            backdrop-filter: blur(5px);
         }
         .modal-content {
             background: var(--card-bg);
             color: var(--text-dark);
-            border-radius: 24px;
-            padding: 22px;
+            border-radius: 26px;
+            padding: 24px;
             width: 100%;
             max-width: 360px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(255, 30, 30, 0.4);
+            box-shadow: 0 0 50px rgba(255, 30, 30, 0.5);
             position: relative;
+            border: 2px solid var(--primary-red);
         }
         .modal-logo {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            width: 65px;
+            height: 65px;
+            background: #ffffff;
             border-radius: 50%;
             margin: 0 auto 12px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
-            font-weight: bold;
-            font-size: 18px;
             box-shadow: 0 0 15px var(--neon-glow);
+            border: 2px solid var(--primary-red);
+            font-weight: 900;
+            color: var(--primary-red);
+            font-size: 16px;
         }
         .modal-content h3 {
             color: #111;
             margin-bottom: 4px;
-            font-size: 17px;
+            font-size: 18px;
         }
         .modal-content p {
             font-size: 11px;
             color: #666;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         .copy-code-btn {
             background: linear-gradient(45deg, var(--dark-red), var(--primary-red));
             color: white;
             border: none;
             width: 100%;
-            padding: 13px;
-            border-radius: 12px;
+            padding: 14px;
+            border-radius: 14px;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
             box-shadow: 0 4px 15px var(--neon-glow);
             margin-bottom: 15px;
+            letter-spacing: 0.5px;
         }
         .code-box {
             background: #161616;
             color: #00ff66;
-            padding: 12px;
-            border-radius: 12px;
+            padding: 14px;
+            border-radius: 14px;
             font-family: monospace;
             font-size: 10px;
             text-align: left;
-            max-height: 150px;
+            max-height: 160px;
             overflow-y: auto;
             border: 1px solid #333;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         .close-modal {
             background: transparent;
             color: var(--primary-red);
             border: 2px solid var(--primary-red);
-            padding: 10px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 14px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
+            transition: 0.2s;
+        }
+        .close-modal:hover {
+            background: var(--primary-red);
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="main-logo">M.K</div>
+        <div class="logo-box"><span>M.K</span></div>
         <h1>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈</h1>
         <p style="color: #bbb; font-size: 11px; margin-top: 4px;">EXCLUSIVE QUOTEX & FEEDBACK SUITE</p>
     </div>
@@ -247,6 +268,7 @@
 
         <!-- Script 3 -->
         <div class="card">
+            <div class="card-icon">📱</div>
             <div class="script-number">SCRIPT #3</div>
             <div class="script-name">IPHONE FEEDBACK</div>
             <button class="open-btn" onclick="openModal('IPHONE FEEDBACK', 'script3')">OPEN SCRIPT</button>
@@ -254,6 +276,7 @@
 
         <!-- Script 4 -->
         <div class="card">
+            <div class="card-icon">🛡️</div>
             <div class="script-number">SCRIPT #4</div>
             <div class="script-name">QX PARTNER BOT SS</div>
             <button class="open-btn" onclick="openModal('QX PARTNER BOT SS', 'script4')">OPEN SCRIPT</button>
@@ -261,6 +284,7 @@
 
         <!-- Script 5 -->
         <div class="card">
+            <div class="card-icon">💸</div>
             <div class="script-number">SCRIPT #5</div>
             <div class="script-name">QX WITHDRAWAL EMAIL SS</div>
             <button class="open-btn" onclick="openModal('QX WITHDRAWAL EMAIL SS', 'script5')">OPEN SCRIPT</button>
@@ -268,6 +292,7 @@
 
         <!-- Script 6 -->
         <div class="card">
+            <div class="card-icon">✉️</div>
             <div class="script-number">SCRIPT #6</div>
             <div class="script-name">BINANCE PAY EMAIL SS</div>
             <button class="open-btn" onclick="openModal('BINANCE PAY EMAIL SS', 'script6')">OPEN SCRIPT</button>
@@ -275,6 +300,7 @@
 
         <!-- Script 7 -->
         <div class="card">
+            <div class="card-icon">🪙</div>
             <div class="script-number">SCRIPT #7</div>
             <div class="script-name">BINANCE PAY SS</div>
             <button class="open-btn" onclick="openModal('BINANCE PAY SS', 'script7')">OPEN SCRIPT</button>
@@ -282,6 +308,7 @@
 
         <!-- Script 8 -->
         <div class="card">
+            <div class="card-icon">🔄</div>
             <div class="script-number">SCRIPT #8</div>
             <div class="script-name">LIVE REFRESH CODE</div>
             <button class="open-btn" onclick="openModal('LIVE REFRESH CODE', 'script8')">OPEN SCRIPT</button>
@@ -289,6 +316,7 @@
 
         <!-- Script 9 -->
         <div class="card">
+            <div class="card-icon">💎</div>
             <div class="script-number">SCRIPT #9</div>
             <div class="script-name">PAY REFRESH CODE</div>
             <button class="open-btn" onclick="openModal('PAY REFRESH CODE', 'script9')">OPEN SCRIPT</button>
@@ -296,6 +324,7 @@
 
         <!-- Script 10 -->
         <div class="card">
+            <div class="card-icon">📤</div>
             <div class="script-number">SCRIPT #10</div>
             <div class="script-name">MAIL SENDER</div>
             <button class="open-btn" onclick="openModal('MAIL SENDER', 'script10')">OPEN SCRIPT</button>
@@ -304,11 +333,11 @@
 
     <a href="https://t.me/MK_HACKER586" class="footer-btn" target="_blank">🚀 Telegram @MK_HACKER586</a>
 
-    <!-- Modal Popup -->
+    <!-- Modal Popup Box -->
     <div class="modal" id="scriptModal">
         <div class="modal-content">
             <div class="modal-logo">M.K</div>
-            <h3 id="modalTitle">M.K HACKER PRO</h3>
+            <h3 id="modalTitle">QX LIVE CODE</h3>
             <p>Copy this bookmark code and add it into your browser bookmarks.</p>
             
             <button class="copy-code-btn" onclick="copyCode()">CLICK TO COPY CODE</button>
@@ -321,16 +350,16 @@
 
     <script>
         const scriptCodes = {
-            'script1': "javascript:(()=>{alert('QX Live Code Loaded');})();",
-            'script2': "javascript:(()=>{alert('Android Feedback Loaded');})();",
-            'script3': "javascript:(()=>{alert('iPhone Feedback Loaded');})();",
-            'script4': "javascript:(()=>{alert('QX Partner Bot SS Loaded');})();",
-            'script5': "javascript:(()=>{alert('QX Withdrawal Email SS Loaded');})();",
-            'script6': "javascript:(()=>{alert('Binance Pay Email SS Loaded');})();",
-            'script7': "javascript:(()=>{alert('Binance Pay SS Loaded');})();",
-            'script8': "javascript:(()=>{alert('Live Refresh Loaded');})();",
-            'script9': "javascript:(()=>{alert('Pay Refresh Loaded');})();",
-            'script10': "javascript:(()=>{alert('Mail Sender Loaded');})();"
+            'script1': "javascript:(()=>{if(document.getElementById('__mk_live__'))return;const d=document,l=d.createElement('div');l.id='__mk_live__';l.style='position:fixed;top:15px;right:15px;background:#111;border:2px solid #ff1e1e;color:#fff;padding:15px;z-index:999999;border-radius:12px;box-shadow:0 0 20px rgba(255,30,30,0.6);font-family:sans-serif;';l.innerHTML='<h4 style=\\'color:#ff1e1e;margin:0 0 8px 0\\'>😈 M.K HACKER LIVE 😈</h4><p style=\\'font-size:11px;margin:0 0 10px 0\\'>QX Suite Connected Successfully!</p><button onclick=\\'this.parentElement.remove()\\' style=\\'background:#ff1e1e;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:bold;\\'>Close</button>';d.body.appendChild(l);})();",
+            'script2': "javascript:(()=>{alert('M.K Android Feedback Generator Loaded');})();",
+            'script3': "javascript:(()=>{alert('M.K iPhone Feedback Generator Loaded');})();",
+            'script4': "javascript:(()=>{alert('M.K QX Partner Bot SS Loaded');})();",
+            'script5': "javascript:(()=>{alert('M.K QX Withdrawal Email SS Loaded');})();",
+            'script6': "javascript:(()=>{alert('M.K Binance Pay Email SS Loaded');})();",
+            'script7': "javascript:(()=>{alert('M.K Binance Pay SS Loaded');})();",
+            'script8': "javascript:(()=>{location.reload();})();",
+            'script9': "javascript:(()=>{location.reload();})();",
+            'script10': "javascript:(()=>{alert('M.K Mail Sender Loaded');})();"
         };
 
         function openModal(scriptName, scriptKey) {
