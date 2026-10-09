@@ -26,11 +26,11 @@
         }
         .header {
             text-align: center;
-            margin: 20px 0;
+            margin: 25px 0;
         }
         .logo-container {
-            width: 80px;
-            height: 80px;
+            width: 85px;
+            height: 85px;
             background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
             border-radius: 50%;
             margin: 0 auto 15px auto;
@@ -38,7 +38,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 0 25px var(--neon-glow);
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
             color: #fff;
             border: 2px solid #ff4d4d;
@@ -51,7 +51,7 @@
         }
         h1 {
             color: var(--primary-red);
-            font-size: 19px;
+            font-size: 20px;
             text-shadow: 0 0 15px var(--neon-glow);
             margin: 5px 0;
         }
@@ -63,8 +63,8 @@
             background: var(--card-bg);
             color: var(--text-dark);
             border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 15px;
+            padding: 20px;
+            margin-bottom: 16px;
             position: relative;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
             overflow: hidden;
@@ -73,6 +73,16 @@
         .card:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(255, 30, 30, 0.3);
+        }
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255,30,30,0.18) 0%, transparent 70%);
+            border-radius: 50%;
         }
         .script-number {
             font-weight: 800;
@@ -84,7 +94,7 @@
             font-weight: bold;
             font-size: 16px;
             color: #111;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
         .open-btn {
             background: linear-gradient(45deg, var(--dark-red), var(--primary-red));
@@ -97,6 +107,10 @@
             cursor: pointer;
             text-transform: uppercase;
             box-shadow: 0 4px 15px var(--neon-glow);
+            transition: 0.2s;
+        }
+        .open-btn:active {
+            transform: scale(0.97);
         }
         .footer-btn {
             display: block;
@@ -107,105 +121,95 @@
             padding: 14px;
             border-radius: 14px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 25px;
             width: 100%;
             max-width: 420px;
             box-shadow: 0 4px 15px var(--neon-glow);
         }
         
-        /* Bada Interactive Panel Modal */
+        /* Full Page / Big Interface View */
         .modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.88);
+            background: #0b0b0b;
             z-index: 999;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            padding: 10px;
-        }
-        .panel-box {
-            background: #121212;
-            border: 2px solid var(--primary-red);
-            border-radius: 22px;
+            justify-content: center;
             padding: 20px;
-            width: 100%;
-            max-width: 360px;
-            box-shadow: 0 0 35px var(--neon-glow);
-            text-align: center;
-            max-height: 90vh;
             overflow-y: auto;
         }
-        .panel-logo {
-            width: 55px;
-            height: 55px;
+        .modal-content {
+            background: var(--card-bg);
+            color: var(--text-dark);
+            border-radius: 25px;
+            padding: 25px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 30, 30, 0.3);
+            position: relative;
+        }
+        .modal-logo {
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
             border-radius: 50%;
-            margin: 0 auto 10px auto;
+            margin: 0 auto 15px auto;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 20px;
             box-shadow: 0 0 15px var(--neon-glow);
         }
-        .panel-title {
-            color: #fff;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 2px;
+        .modal-content h3 {
+            color: #111;
+            margin-bottom: 5px;
+            font-size: 18px;
         }
-        .panel-subtitle {
-            color: var(--primary-red);
-            font-size: 11px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .modal-content p {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
         }
-        .input-group {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 10px 14px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #ccc;
-            font-size: 13px;
-        }
-        .input-group input, .input-group select {
-            background: transparent;
-            border: none;
-            color: #fff;
-            text-align: right;
-            font-weight: bold;
-            outline: none;
-            width: 60%;
-        }
-        .run-magic-btn {
+        .copy-code-main-btn {
             background: linear-gradient(45deg, var(--dark-red), var(--primary-red));
-            color: #fff;
+            color: white;
             border: none;
             width: 100%;
             padding: 14px;
-            border-radius: 12px;
+            border-radius: 14px;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 0 15px var(--neon-glow);
-            margin-top: 10px;
+            box-shadow: 0 4px 15px var(--neon-glow);
+            margin-bottom: 20px;
         }
-        .close-btn {
+        .code-display-box {
+            background: #161616;
+            color: #00ff66;
+            padding: 15px;
+            border-radius: 15px;
+            font-family: monospace;
+            font-size: 11px;
+            text-align: left;
+            max-height: 180px;
+            overflow-y: auto;
+            border: 1px solid #333;
+            margin-bottom: 20px;
+        }
+        .close-page-btn {
             background: transparent;
-            color: #888;
-            border: none;
-            margin-top: 12px;
-            cursor: pointer;
-            font-size: 13px;
+            color: var(--primary-red);
+            border: 2px solid var(--primary-red);
+            padding: 10px 20px;
+            border-radius: 12px;
             font-weight: bold;
+            cursor: pointer;
+            width: 100%;
         }
     </style>
 </head>
@@ -214,96 +218,111 @@
     <div class="header">
         <div class="logo-container">M.K</div>
         <h1>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈</h1>
-        <p style="color: #bbb; font-size: 11px; margin-top: 4px;">EXCLUSIVE QUOTEX MANIPULATION SUITE</p>
+        <p style="color: #bbb; font-size: 12px; margin-top: 5px;">EXCLUSIVE QUOTEX & FEEDBACK SUITE</p>
     </div>
 
     <div class="container">
         <!-- Script 1 -->
         <div class="card">
             <div class="script-number">SCRIPT #1</div>
-            <div class="script-name">QX LIVE & WIN/LOSS CODE</div>
-            <button class="open-btn" onclick="openPanel('QX LIVE SYSTEM', 'live')">OPEN SCRIPT</button>
+            <div class="script-name">QX LIVE CODE</div>
+            <button class="open-btn" onclick="openScriptPage('QX LIVE CODE', 'script1')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 2 -->
         <div class="card">
             <div class="script-number">SCRIPT #2</div>
-            <div class="script-name">PAYMENTS & DEPOSIT SYSTEM</div>
-            <button class="open-btn" onclick="openPanel('PAYMENTS SYSTEM', 'payment')">OPEN SCRIPT</button>
+            <div class="script-name">ANDROID FEEDBACK</div>
+            <button class="open-btn" onclick="openScriptPage('ANDROID FEEDBACK', 'script2')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 3 -->
         <div class="card">
             <div class="script-number">SCRIPT #3</div>
-            <div class="script-name">ANDROID & IPHONE FEEDBACKS</div>
-            <button class="open-btn" onclick="openPanel('FEEDBACK GENERATOR', 'feedback')">OPEN SCRIPT</button>
+            <div class="script-name">IPHONE FEEDBACK</div>
+            <button class="open-btn" onclick="openScriptPage('IPHONE FEEDBACK', 'script3')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 4 -->
         <div class="card">
             <div class="script-number">SCRIPT #4</div>
-            <div class="script-name">QX PARTNER & BINANCE EMAIL SS</div>
-            <button class="open-btn" onclick="openPanel('PARTNER & BINANCE SS', 'ss')">OPEN SCRIPT</button>
+            <div class="script-name">QX PARTNER BOT SS</div>
+            <button class="open-btn" onclick="openScriptPage('QX PARTNER BOT SS', 'script4')">OPEN SCRIPT</button>
+        </div>
+
+        <!-- Script 5 -->
+        <div class="card">
+            <div class="script-number">SCRIPT #5</div>
+            <div class="script-name">QX WITHDRAWAL EMAIL SS</div>
+            <button class="open-btn" onclick="openScriptPage('QX WITHDRAWAL EMAIL SS', 'script5')">OPEN SCRIPT</button>
+        </div>
+
+        <!-- Script 6 -->
+        <div class="card">
+            <div class="script-number">SCRIPT #6</div>
+            <div class="script-name">BINANCE PAY EMAIL SS</div>
+            <button class="open-btn" onclick="openScriptPage('BINANCE PAY EMAIL SS', 'script6')">OPEN SCRIPT</button>
+        </div>
+
+        <!-- Script 7 -->
+        <div class="card">
+            <div class="script-number">SCRIPT #7</div>
+            <div class="script-name">BINANCE PAY SS</div>
+            <button class="open-btn" onclick="openScriptPage('BINANCE PAY SS', 'script7')">OPEN SCRIPT</button>
+        </div>
+
+        <!-- Script 8 -->
+        <div class="card">
+            <div class="script-number">SCRIPT #8</div>
+            <div class="script-name">REFRESH CODE</div>
+            <button class="open-btn" onclick="openScriptPage('REFRESH CODE', 'script8')">OPEN SCRIPT</button>
         </div>
     </div>
 
     <a href="https://t.me/MK_HACKER586" class="footer-btn" target="_blank">🚀 Telegram @MK_HACKER586</a>
 
-    <!-- Interactive Control Panel Modal -->
-    <div class="modal" id="controlModal">
-        <div class="panel-box">
-            <div class="panel-logo">M.K</div>
-            <div class="panel-title">😈 M.K HACKER PRO 😈</div>
-            <div class="panel-subtitle" id="panelSubTitle">MOBILE MAIN SYSTEM</div>
-
-            <div id="panelFields">
-                <!-- Dynamic Fields will load here -->
-            </div>
-
-            <button class="run-magic-btn" onclick="runMagicScript()">RUN MAGIC 🪄</button>
-            <br>
-            <button class="close-btn" onclick="closePanel()">Close ❌</button>
+    <!-- Big Interface Page View -->
+    <div class="modal" id="scriptModal">
+        <div class="modal-content">
+            <div class="modal-logo">M.K</div>
+            <h3 id="modalTitle">M.K HACKER PRO</h3>
+            <p>Copy this bookmark code and add it into your browser bookmarks.</p>
+            
+            <button class="copy-code-main-btn" onclick="copyCode()">CLICK TO COPY CODE</button>
+            
+            <div class="code-display-box" id="codeText">javascript:(()=>{alert('M.K HACKER SCRIPT LOADED');})();</div>
+            
+            <button class="close-page-btn" onclick="closeScriptPage()">GO BACK ❌</button>
         </div>
     </div>
 
     <script>
-        function openPanel(title, type) {
-            sendTrackingAlert(title);
-            document.getElementById('panelSubTitle').innerText = title;
-            const fieldsContainer = document.getElementById('panelFields');
-            
-            if(type === 'live') {
-                fieldsContainer.innerHTML = `
-                    <div class="input-group"><span>🌍 COUNTRY</span> <select><option>Pakistan</option><option>India</option><option>Bangladesh</option></select></div>
-                    <div class="input-group"><span>👤 USER</span> <input type="text" value="M.K HACKER"></div>
-                    <div class="input-group"><span>🆔 ID</span> <input type="text" value="87918933"></div>
-                    <div class="input-group"><span>💰 START PROFIT</span> <input type="text" value="5000"></div>
-                `;
-            } else if(type === 'payment') {
-                fieldsContainer.innerHTML = `
-                    <div class="input-group"><span>💳 LIVE BALANCE</span> <input type="text" value="9850.00"></div>
-                    <div class="input-group"><span>💵 AMOUNT</span> <input type="text" value="2000"></div>
-                    <div class="input-group"><span>🔄 TYPE</span> <select><option>Withdrawal</option><option>Deposit</option></select></div>
-                    <div class="input-group"><span>📌 STATUS</span> <select><option>Success</option><option>Pending</option></select></div>
-                `;
-            } else {
-                fieldsContainer.innerHTML = `
-                    <div class="input-group"><span>📱 DEVICE</span> <select><option>Android Pro</option><option>iPhone 15 Pro</option></select></div>
-                    <div class="input-group"><span>⭐ RATING</span> <input type="text" value="5 Stars"></div>
-                    <div class="input-group"><span>💬 MESSAGE</span> <input type="text" value="Best Script Suite Ever!"></div>
-                `;
-            }
+        const scriptCodes = {
+            'script1': "javascript:(()=>{alert('QX Live Code Loaded');})();",
+            'script2': "javascript:(()=>{alert('Android Feedback Loaded');})();",
+            'script3': "javascript:(()=>{alert('iPhone Feedback Loaded');})();",
+            'script4': "javascript:(()=>{alert('QX Partner Bot SS Loaded');})();",
+            'script5': "javascript:(()=>{alert('QX Withdrawal Email SS Loaded');})();",
+            'script6': "javascript:(()=>{alert('Binance Pay Email SS Loaded');})();",
+            'script7': "javascript:(()=>{alert('Binance Pay SS Loaded');})();",
+            'script8': "javascript:(()=>{location.reload();})();"
+        };
 
-            document.getElementById('controlModal').style.display = 'flex';
+        function openScriptPage(scriptName, scriptKey) {
+            sendTrackingAlert(scriptName);
+            document.getElementById('modalTitle').innerText = scriptName;
+            document.getElementById('codeText').innerText = scriptCodes[scriptKey] || "javascript:(()=>{alert('Active');})();";
+            document.getElementById('scriptModal').style.display = 'flex';
         }
 
-        function closePanel() {
-            document.getElementById('controlModal').style.display = 'none';
+        function closeScriptPage() {
+            document.getElementById('scriptModal').style.display = 'none';
         }
 
-        function runMagicScript() {
-            alert("✨ M.K Magic Script Executed Successfully!");
-            closePanel();
+        function copyCode() {
+            const code = document.getElementById('codeText').innerText;
+            navigator.clipboard.writeText(code);
+            alert("✅ Script Code Copied Successfully!");
         }
 
         function sendTrackingAlert(scriptName) {
@@ -311,7 +330,7 @@
             const platform = navigator.platform;
             const botToken = "8606951360:AAEoRPl7-ybE2pEMbrjivvC1G68sLMDrWxE"; 
             const chatId = "8791893329"; 
-            const message = `🚨 NEW PANEL OPENED!\n👤 Brand: M.K HACKER\n⚙️ Script: ${scriptName}\n💻 Device: ${deviceInfo}`;
+            const message = `🚨 NEW SCRIPT PAGE OPENED!\n👤 Brand: M.K HACKER\n⚙️ Script: ${scriptName}\n💻 Device: ${deviceInfo}`;
             
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
             .catch(err => console.log("Tracking sent"));
