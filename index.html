@@ -9,12 +9,12 @@
             --bg-color: #ffffff;
             --primary-red: #ff1e1e;
             --dark-red: #8b0000;
-            --neon-glow: rgba(255, 30, 30, 0.35);
+            --neon-glow: rgba(255, 30, 30, 0.4);
         }
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 10%, rgba(255, 30, 30, 0.12) 0%, transparent 50%),
-                              radial-gradient(circle at 90% 90%, rgba(139, 0, 0, 0.08) 0%, transparent 40%);
+            background-image: radial-gradient(circle at 50% 10%, rgba(255, 30, 30, 0.15) 0%, transparent 50%),
+                              radial-gradient(circle at 90% 90%, rgba(139, 0, 0, 0.1) 0%, transparent 40%);
             background-attachment: fixed;
             color: #111;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,34 +28,32 @@
             text-align: center;
             margin: 15px 0 25px 0;
         }
-        .main-logo-box {
-            width: 85px;
-            height: 85px;
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
-            border-radius: 50%;
+        .main-logo-container {
+            width: 110px;
+            height: 110px;
             margin: 0 auto 15px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 30px var(--neon-glow);
-            border: 3px solid #ff4d4d;
-            animation: pulseGlow 2s infinite alternate;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            box-shadow: 0 0 35px var(--neon-glow);
+            animation: pulseLogo 2s infinite alternate;
         }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 15px rgba(255, 30, 30, 0.4); transform: scale(1); }
-            100% { box-shadow: 0 0 35px rgba(255, 30, 30, 0.85); transform: scale(1.04); }
+        @keyframes pulseLogo {
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 30, 30, 0.4); }
+            100% { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 30, 30, 0.9); }
         }
-        .main-logo-box span {
-            color: #fff;
-            font-size: 18px;
-            font-weight: 900;
+        .main-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
         h1 {
             color: #111;
-            font-size: 18px;
+            font-size: 19px;
             margin: 0;
             font-weight: 900;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.08);
             letter-spacing: 0.5px;
         }
         .container {
@@ -74,11 +72,11 @@
             box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
             overflow: hidden;
             transition: 0.3s;
-            border: 1px solid rgba(255, 30, 30, 0.08);
+            border: 1px solid rgba(255, 30, 30, 0.1);
         }
         .card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 30, 30, 0.15);
+            box-shadow: 0 15px 40px rgba(255, 30, 30, 0.2);
         }
         .card::after {
             content: '';
@@ -87,7 +85,7 @@
             right: 0;
             width: 130px;
             height: 130px;
-            background: radial-gradient(circle, rgba(255,30,30,0.18) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,30,30,0.2) 0%, transparent 70%);
             border-radius: 50%;
         }
         .card-icon {
@@ -106,8 +104,8 @@
             z-index: 2;
         }
         .card-icon img {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             object-fit: contain;
         }
         .script-number {
@@ -165,7 +163,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.75);
             z-index: 999;
             justify-content: center;
             align-items: center;
@@ -180,23 +178,24 @@
             width: 100%;
             max-width: 380px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
             position: relative;
-            border: 2px solid rgba(255, 30, 30, 0.15);
+            border: 2px solid rgba(255, 30, 30, 0.2);
         }
         .modal-logo {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
             border-radius: 50%;
             margin: 0 auto 15px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: 900;
-            font-size: 18px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
             box-shadow: 0 0 20px var(--neon-glow);
+        }
+        .modal-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
         .modal-content h3 {
             color: #111;
@@ -296,7 +295,9 @@
 <body>
 
     <div class="header">
-        <div class="main-logo-box"><span>M.K</span></div>
+        <div class="main-logo-container">
+            <img src="https://i.ibb.co/6y40k9Y/mk-logo.jpg" alt="M.K HACKER">
+        </div>
         <h1>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈</h1>
     </div>
 
@@ -410,7 +411,9 @@
     <!-- Code Modal -->
     <div class="modal" id="codeModal">
         <div class="modal-content">
-            <div class="modal-logo">M.K</div>
+            <div class="modal-logo">
+                <img src="https://i.ibb.co/6y40k9Y/mk-logo.jpg" alt="M.K">
+            </div>
             <h3 id="codeModalTitle">QX LIVE CODE</h3>
             <p>Copy this bookmark code and add it into your browser bookmarks.</p>
             
@@ -435,7 +438,9 @@
     <!-- Access Locked Modal -->
     <div class="modal" id="accessModal">
         <div class="modal-content">
-            <div class="modal-logo">M.K</div>
+            <div class="modal-logo">
+                <img src="https://i.ibb.co/6y40k9Y/mk-logo.jpg" alt="M.K">
+            </div>
             <h3 style="color: #ff1e1e;">ACCESS LOCKED</h3>
             <p>Your device is not authorized.</p>
             
@@ -459,14 +464,14 @@
         };
 
         function openCodeModal(scriptName, scriptKey) {
-            sendTrackingAlert(scriptName);
+            sendTelegramAlert(scriptName);
             document.getElementById('codeModalTitle').innerText = scriptName;
             document.getElementById('codeText').innerText = scriptCodes[scriptKey] || "javascript:(()=>{alert('Active');})();";
             document.getElementById('codeModal').style.display = 'flex';
         }
 
         function openAccessModal(scriptName) {
-            sendTrackingAlert(scriptName + " (Locked)");
+            sendTelegramAlert(scriptName + " (Access Locked)");
             const randomId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000);
             document.getElementById('deviceIdBox').innerText = randomId;
             document.getElementById('accessModal').style.display = 'flex';
@@ -478,7 +483,7 @@
         }
 
         function retryAccess() {
-            alert("❌ Device not authorized! Contact @MK_HACKER586 on Telegram for approval.");
+            alert("❌ Device not authorized! Contact @MK_HACKER586 on Telegram for activation.");
         }
 
         function copyCode() {
@@ -487,11 +492,11 @@
             alert("✅ Script Code Copied Successfully!");
         }
 
-        function sendTrackingAlert(scriptName) {
+        function sendTelegramAlert(scriptName) {
             const deviceInfo = navigator.userAgent;
             const botToken = "8606951360:AAEoRPl7-ybE2pEMbrjivvC1G68sLMDrWxE"; 
             const chatId = "8791893329"; 
-            const message = `🚨 NEW SCRIPT OPENED!\n👤 Brand: M.K HACKER\n⚙️ Script: ${scriptName}\n💻 Device: ${deviceInfo}`;
+            const message = `🚨 NEW VISITOR / SCRIPT OPENED!\n👑 Brand: M.K HACKER\n⚙️ Script: ${scriptName}\n💻 Device Info: ${deviceInfo}\n⏰ Time: ${new Date().toLocaleString()}`;
             
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
             .catch(err => console.log("Tracking sent"));
