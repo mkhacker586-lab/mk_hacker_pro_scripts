@@ -343,27 +343,6 @@
             background: rgba(255, 30, 30, 0.1);
             box-shadow: 0 0 15px rgba(255, 30, 30, 0.5);
         }
-        .clickable-warning {
-            display: block;
-            background: #080202;
-            border: 1.5px dashed var(--primary-red);
-            border-radius: 16px;
-            padding: 14px;
-            font-family: monospace;
-            font-size: 13px;
-            color: var(--primary-red);
-            font-weight: bold;
-            margin-bottom: 18px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(255, 30, 30, 0.3);
-        }
-        .clickable-warning:hover {
-            background: rgba(255, 30, 30, 0.1);
-            border-color: #ff5f56;
-            box-shadow: 0 0 25px rgba(255, 30, 30, 0.6);
-        }
         
         /* Toast Notification */
         #toast {
@@ -565,28 +544,27 @@
                 <!-- Click to copy Device ID -->
                 <div class="access-box" id="deviceIdBox" onclick="copyDeviceId()" title="Click to copy ID">2198334975712629800</div>
                 
-                <!-- Clickable warning box for NOT ACCESS / CONTACT -->
-                <a href="https://t.me/MK_HACKER586" target="_blank" class="clickable-warning" id="warningBoxLink">
-                    ❌ NOT ACCESS - CONTACT TO GET ACCESS
-                </a>
+                <p style="margin-bottom: 20px; font-weight: bold; font-size: 14px;">
+                    Telegram: <a href="https://t.me/MK_HACKER586" target="_blank" style="color: #ff1e1e; text-decoration: none;">@MK_HACKER586</a>
+                </p>
             </div>
             
             <button class="action-main-btn" onclick="retryAccess()">RETRY 🔄</button>
             
-            <div class="modal-footer-brand">
-                Developed By <a href="https://t.me/MK_HACKER586" target="_blank">@MK_HACKER</a>
+            <div class="modal-footer-brand" style="margin-top: 10px;">
+                Developed By <a href="https://t.me/MK_HACKER586" target="_blank" style="color: #ff1e1e;">@MK_HACKER</a>
             </div>
             
-            <button class="close-modal-btn" onclick="closeModals()">GO BACK ❌</button>
+            <button class="close-modal-btn" onclick="closeModals()" style="margin-top: 15px;">GO BACK ❌</button>
         </div>
     </div>
 
     <!-- Loading Overlay for Retry -->
-    <div id="loadingOverlay">
+    <main id="loadingOverlay">
         <div class="loading-box">
             PLEASE WAIT...
         </div>
-    </div>
+    </main>
 
     <!-- Toast Notification -->
     <div id="toast">COPIED SUCCESSFULLY ✓</div>
@@ -642,9 +620,9 @@
                     <h3 style="color: #ff1e1e;">ACCESS LOCKED ❌</h3>
                     <p class="modal-desc">Your device is not authorized.</p>
                     <div class="access-box" id="deviceIdBox" onclick="copyDeviceId()" title="Click to copy ID">${deviceId}</div>
-                    <a href="https://t.me/MK_HACKER586" target="_blank" class="clickable-warning">
-                        ❌ NOT ACCESS - CONTACT TO GET ACCESS
-                    </a>
+                    <p style="margin-bottom: 20px; font-weight: bold; font-size: 14px;">
+                        Telegram: <a href="https://t.me/MK_HACKER586" target="_blank" style="color: #ff1e1e; text-decoration: none;">@MK_HACKER586</a>
+                    </p>
                 `;
             }
         }
