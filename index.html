@@ -31,18 +31,17 @@
             margin: 15px 0 25px 0;
         }
         .main-logo-container {
-            width: 125px;
-            height: 125px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 15px auto;
             border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
-            box-shadow: 0 0 45px var(--neon-glow);
+            background: none;
+            box-shadow: 0 0 35px var(--neon-glow);
             animation: pulseLogo 2s infinite alternate;
         }
         @keyframes pulseLogo {
-            0% { transform: scale(1); box-shadow: 0 0 25px rgba(255, 30, 30, 0.5); }
-            100% { transform: scale(1.06); box-shadow: 0 0 55px rgba(255, 30, 30, 0.95); }
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 30, 30, 0.4); }
+            100% { transform: scale(1.05); box-shadow: 0 0 45px rgba(255, 30, 30, 0.9); }
         }
         .main-logo-container img {
             width: 100%;
@@ -162,7 +161,7 @@
             box-shadow: 0 6px 25px var(--neon-glow);
         }
         
-        /* Modals */
+        /* Modals style like reference image */
         .modal {
             display: none;
             position: fixed;
@@ -175,12 +174,12 @@
             backdrop-filter: blur(10px);
         }
         .modal-content {
-            background: #141414;
+            background: #121212;
             color: #fff;
             border-radius: 30px;
             padding: 30px 20px;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
             box-shadow: 0 0 50px rgba(255, 30, 30, 0.5);
             position: relative;
@@ -191,51 +190,37 @@
             0% { transform: scale(0.8); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
-        .modal-logo {
-            width: 85px;
-            height: 85px;
-            margin: 0 auto 15px auto;
-            border-radius: 50%;
-            padding: 3px;
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
-            box-shadow: 0 0 30px var(--neon-glow);
-            animation: pulseLogo 2s infinite alternate;
+        .modal-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 12px;
         }
-        .modal-logo img {
+        .modal-small-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 15px var(--neon-glow);
+            border: 2px solid var(--primary-red);
+        }
+        .modal-small-logo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
         }
-        .modal-brand-name {
-            font-size: 14px;
+        .modal-title-text {
+            font-size: 20px;
             font-weight: 900;
-            color: var(--primary-red);
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px var(--neon-glow);
-        }
-        .modal-content h3 {
             color: #fff;
-            margin-bottom: 6px;
-            font-size: 19px;
-            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(255,30,30,0.5);
         }
-        .modal-content p {
-            font-size: 12px;
+        .modal-desc {
+            font-size: 13px;
             color: #bbb;
-            margin-bottom: 20px;
-        }
-        .access-box {
-            background: #1a1a1a;
-            border: 1.5px dashed var(--primary-red);
-            border-radius: 16px;
-            padding: 14px;
-            font-family: monospace;
-            font-size: 15px;
-            color: var(--primary-red);
-            font-weight: bold;
-            margin-bottom: 18px;
-            letter-spacing: 1px;
+            margin-bottom: 22px;
         }
         .action-main-btn {
             background: linear-gradient(45deg, var(--dark-red), var(--primary-red));
@@ -243,16 +228,17 @@
             border: none;
             width: 100%;
             padding: 15px;
-            border-radius: 16px;
+            border-radius: 18px;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
             box-shadow: 0 5px 20px var(--neon-glow);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
         .code-display-box {
-            background: #0f0f0f;
-            border-radius: 14px;
+            background: #080808;
+            border-radius: 16px;
             border: 1px solid #333;
             text-align: left;
             overflow: hidden;
@@ -293,6 +279,16 @@
             white-space: pre-wrap;
             word-break: break-all;
         }
+        .modal-footer-brand {
+            font-size: 12px;
+            color: #888;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .modal-footer-brand a {
+            color: var(--primary-red);
+            text-decoration: none;
+        }
         .close-modal-btn {
             background: transparent;
             color: var(--primary-red);
@@ -303,10 +299,23 @@
             cursor: pointer;
             width: 100%;
             transition: 0.2s;
+            margin-top: 10px;
         }
         .close-modal-btn:hover {
             background: var(--primary-red);
             color: #fff;
+        }
+        .access-box {
+            background: #080808;
+            border: 1.5px dashed var(--primary-red);
+            border-radius: 16px;
+            padding: 14px;
+            font-family: monospace;
+            font-size: 15px;
+            color: var(--primary-red);
+            font-weight: bold;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -409,12 +418,13 @@
     <!-- Code Modal -->
     <div class="modal" id="codeModal">
         <div class="modal-content">
-            <div class="modal-logo">
-                <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" alt="M.K">
+            <div class="modal-top-row">
+                <div class="modal-small-logo">
+                    <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" alt="M.K">
+                </div>
+                <div class="modal-title-text" id="codeModalTitle">QX LIVE CODE</div>
             </div>
-            <div class="modal-brand-name">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
-            <h3 id="codeModalTitle">QX LIVE CODE</h3>
-            <p>Copy this bookmark code and add it into your browser bookmarks.</p>
+            <p class="modal-desc">Copy this bookmark code and add it into your browser bookmarks.</p>
             
             <button class="action-main-btn" onclick="copyCode()">CLICK TO COPY CODE</button>
             
@@ -430,6 +440,10 @@
                 <pre class="code-pre" id="codeText">javascript:(()=>{alert('M.K HACKER SCRIPT LOADED');})();</pre>
             </div>
             
+            <div class="modal-footer-brand">
+                😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 PRO SCRIPTS © 2026
+            </div>
+            
             <button class="close-modal-btn" onclick="closeModals()">GO BACK ❌</button>
         </div>
     </div>
@@ -437,22 +451,25 @@
     <!-- Access Locked Modal -->
     <div class="modal" id="accessModal">
         <div class="modal-content">
-            <div class="modal-logo">
-                <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" alt="M.K">
+            <div class="modal-top-row">
+                <div class="modal-small-logo">
+                    <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" alt="M.K">
+                </div>
+                <div class="modal-title-text" style="color: #ff1e1e;">ACCESS LOCKED</div>
             </div>
-            <div class="modal-brand-name">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
-            <h3 style="color: #ff1e1e;">ACCESS LOCKED</h3>
-            <p>Your device is not authorized.</p>
+            <p class="modal-desc">Your device is not authorized.</p>
             
             <div class="access-box" id="deviceIdBox">9056670944235380564</div>
             
-            <p style="margin-bottom: 8px; font-weight: bold;">Telegram: <span style="color: #ff1e1e;">@MK_HACKER586</span></p>
+            <p style="margin-bottom: 15px; font-weight: bold;">Telegram: <a href="https://t.me/MK_HACKER586" target="_blank" style="color: #ff1e1e; text-decoration: none;">@MK_HACKER586</a></p>
             
             <button class="action-main-btn" onclick="retryAccess()">RETRY 🔄</button>
             
-            <p style="font-size: 11px; color: #888; margin-top: 10px;">Developed By @MK_HACKER</p>
+            <div class="modal-footer-brand">
+                Developed By <a href="https://t.me/MK_HACKER586" target="_blank">@MK_HACKER</a>
+            </div>
             
-            <button class="close-modal-btn" onclick="closeModals()" style="margin-top: 10px;">GO BACK ❌</button>
+            <button class="close-modal-btn" onclick="closeModals()">GO BACK ❌</button>
         </div>
     </div>
 
