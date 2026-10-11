@@ -595,6 +595,8 @@
                 overlay.style.display = 'none';
                 const randomId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000);
                 document.getElementById('deviceIdBox').innerText = randomId;
+                // Yahan hamesha ACCESS LOCKED hi rahega jab tak real database check na lagaya jaye
+                document.getElementById('accessModal').style.display = 'flex';
             }, 1200);
         }
 
