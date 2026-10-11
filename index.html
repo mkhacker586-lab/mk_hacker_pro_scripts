@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈</title>
     
-    <!-- Favicon / Browser Tab Logo -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png">
 
     <!-- Telegram & Social Media Rich Preview Meta Tags with Pro Bio -->
     <meta property="og:title" content="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈">
-    <meta property="og:description" content="Ruling My Own World ☠️ Fear None, Trust Few ⚡ Stay Alert, Stay Unbreakable. Explore exclusive high-end automation scripts and trading tools by M.K HACKER.">
+    <meta property="og:description" content="Ruling My Own World ☠️ Fear None, Trust Few ⚡ Stay Alert, Stay Unbreakable. Access exclusive pro trading scripts & tools by M.K HACKER.">
     <meta property="og:image" content="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png">
     <meta property="og:url" content="https://mkhackerproscripts.vercel.app/">
     <meta name="theme-color" content="#ff1e1e">
@@ -337,7 +337,7 @@
             letter-spacing: 1px;
         }
         
-        /* Floating Toast Notification */
+        /* Toast Notification */
         #toast {
             visibility: hidden;
             min-width: 150px;
@@ -367,6 +367,30 @@
         @keyframes fadeout {
             from { bottom: 30px; opacity: 1; }
             to { bottom: 0; opacity: 0; }
+        }
+        
+        /* Loading Overlay for Retry */
+        #loadingOverlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        .loading-box {
+            background: #120505;
+            border: 2px solid var(--primary-red);
+            padding: 25px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 40px var(--neon-glow);
+            color: #fff;
+            font-weight: 900;
+            font-size: 16px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -522,6 +546,13 @@
         </div>
     </div>
 
+    <!-- Loading Overlay for Retry -->
+    <div id="loadingOverlay">
+        <div class="loading-box">
+            PLEASE WAIT...
+        </div>
+    </div>
+
     <!-- Toast Notification -->
     <div id="toast">COPIED SUCCESSFULLY ✓</div>
 
@@ -537,7 +568,6 @@
             document.getElementById('codeModalTitle').innerText = scriptName;
             document.getElementById('codeText').innerText = scriptCodes[scriptKey] || "javascript:(()=>{alert('Active');})();";
             
-            // Reset copy button state
             const btn = document.getElementById('copyBtn');
             btn.innerText = "CLICK TO COPY CODE";
             btn.classList.remove('copied');
@@ -558,19 +588,25 @@
         }
 
         function retryAccess() {
-            alert("❌ Device not authorized! Contact @MK_HACKER586 on Telegram for activation.");
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.style.display = 'flex';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                const randomId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000);
+                document.getElementById('deviceIdBox').innerText = randomId;
+                alert("❌ Device not authorized! Contact @MK_HACKER586 on Telegram for activation.");
+            }, 1200);
         }
 
         function copyCode() {
             const code = document.getElementById('codeText').innerText;
             navigator.clipboard.writeText(code);
             
-            // Change button appearance like reference site
             const btn = document.getElementById('copyBtn');
             btn.innerText = "COPIED SUCCESSFULLY ✓";
             btn.classList.add('copied');
             
-            // Show custom floating toast
             const toast = document.getElementById('toast');
             toast.className = "show";
             setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 1800);
