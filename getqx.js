@@ -8,10 +8,8 @@
         deviceId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000).toString();
         localStorage.setItem('mkh_device_id', deviceId);
     }
-    
-    let isAuthorized = localStorage.getItem('mkh_authorized') === 'true';
 
-    // Toast Notification Element with Dynamic Color Support
+    // Toast Notification Element with Dynamic Color
     let toast = d.getElementById('__mkh_toast__');
     if(!toast){
         toast = d.createElement('div');
@@ -41,9 +39,33 @@
     const l = d.createElement('div');
     l.id = '__mkh_main__';
     l.style = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999;display:flex;align-items:center;justify-content:center;font-family:sans-serif;backdrop-filter:blur(10px);';
+
+    // Loading screen while checking license
+    l.innerHTML = `
+    <div style="background:#120505;color:#fff;border-radius:30px;padding:30px 20px;width:100%;max-width:420px;text-align:center;box-shadow:0 0 50px rgba(255, 30, 30, 0.7);border:2px solid #ff1e1e;">
+        <div style="width:75px;height:75px;margin:0 auto 15px auto;border-radius:50%;border:4px solid rgba(255,30,30,0.2);border-top:4px solid #ff1e1e;animation:mkhSpin 0.6s linear infinite;"></div>
+        <h3 style="color:#ff1e1e;font-size:16px;font-weight:900;">VERIFYING LICENSE...</h3>
+    </div>`;
     
-    function renderModal() {
+    // Add CSS Animation for Spinner
+    if(!d.getElementById('__mkh_style__')){
+        const st = d.createElement('style');
+        st.id = '__mkh_style__';
+        st.textContent = '@keyframes mkhSpin { to { transform: rotate(360deg); } }';
+        d.head.appendChild(st);
+    }
+    b.appendChild(l);
+
+    // Live Access Check from Cloud Database (Aapka API / JSON Bin URL yahan aayega)
+    // Filhal hum ise secure cloud check ke sath simulate kar rahe hain
+    setTimeout(() => {
+        // Yahan hum check karenge ke device ID authorized hai ya nahi
+        // (Aap jab bolo gay, isko live JSON bin URL se connect kar denge taake ek click par remove ho jaye)
+        let authorizedList = JSON.parse(localStorage.getItem('mkh_auth_db') || '[]');
+        let isAuthorized = authorizedList.includes(deviceId);
+
         if(!isAuthorized){
+            // Show Locked Screen
             l.innerHTML = `
             <div style="background:#120505;color:#fff;border-radius:30px;padding:30px 20px;width:100%;max-width:420px;text-align:center;box-shadow:0 0 50px rgba(255, 30, 30, 0.7);position:relative;border:2px solid #ff1e1e;">
                 <div style="width:75px;height:75px;margin:0 auto 12px auto;border-radius:50%;box-shadow:0 0 25px rgba(255,30,30,0.7);overflow:hidden;">
@@ -70,29 +92,23 @@
                 
                 <button onclick="this.closest('#__mkh_main__').remove()" style="background:transparent;color:#ff1e1e;border:2px solid #ff1e1e;padding:15px;border-radius:18px;font-weight:bold;cursor:pointer;width:100%;margin-top:15px;text-transform:uppercase;">GO BACK ❌</button>
             </div>`;
-            
-            setTimeout(() => {
-                const copyBox = d.getElementById('__mkh_copy_box');
-                if(copyBox){
-                    copyBox.onclick = function(){
-                        navigator.clipboard.writeText(deviceId);
-                        showToast("DEVICE ID COPIED ✓", true);
-                    };
-                }
-                const actBtn = d.getElementById('__mkh_activate_btn');
-                if(actBtn){
-                    actBtn.onclick = function(){
-                        let btn = this;
-                        btn.innerText = "PLEASE WAIT...";
-                        setTimeout(() => {
-                            btn.innerText = "𝗔𝗖𝗧𝗜𝗩𝗔𝗧𝗘 𝗦𝗖𝗥𝗜𝗣𝗧 🚀";
-                            showToast("DEVICE NOT AUTHORIZED ❌", false);
-                        }, 1200);
-                    };
-                }
-            }, 50);
+
+            d.getElementById('__mkh_copy_box').onclick = function(){
+                navigator.clipboard.writeText(deviceId);
+                showToast("DEVICE ID COPIED ✓", true);
+            };
+
+            d.getElementById('__mkh_activate_btn').onclick = function(){
+                let btn = this;
+                btn.innerText = "PLEASE WAIT...";
+                setTimeout(() => {
+                    btn.innerText = "ACTIVATE SCRIPT 🚀";
+                    showToast("DEVICE NOT AUTHORIZED ❌", false);
+                }, 1200);
+            };
+
         } else {
-            // Unlocked Pro Trading Suite Panel & Features
+            // Show Unlocked Pro Trading Suite Panel
             l.innerHTML = `
             <div style="background:#120505;border:2px solid #ff1e1e;border-radius:26px;padding:22px;width:90%;max-width:380px;text-align:center;box-shadow:0 0 50px rgba(255,30,30,0.8);color:#fff;position:relative;">
                 <button onclick="this.closest('#__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
@@ -149,8 +165,5 @@
                 }
             }, 50);
         }
-    }
-
-    renderModal();
-    b.appendChild(l);
+    }, 1000);
 })();
