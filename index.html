@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈</title>
     
-    <!-- Telegram & Social Media Rich Preview Meta Tags -->
+    <!-- Favicon / Browser Tab Logo -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png">
+
+    <!-- Telegram & Social Media Rich Preview Meta Tags with Pro Bio -->
     <meta property="og:title" content="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗣𝗥𝗢 𝗦𝗖𝗥𝗜𝗣𝗧𝗦 ☠️😈">
-    <meta property="og:description" content="Ruling My Own World ☠️ Fear None, Trust Few ⚡ Stay Alert, Stay Unbreakable. Access exclusive pro trading scripts & tools!">
+    <meta property="og:description" content="Ruling My Own World ☠️ Fear None, Trust Few ⚡ Stay Alert, Stay Unbreakable. Explore exclusive high-end automation scripts and trading tools by M.K HACKER.">
     <meta property="og:image" content="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png">
     <meta property="og:url" content="https://mkhackerproscripts.vercel.app/">
     <meta name="theme-color" content="#ff1e1e">
@@ -246,6 +249,11 @@
             box-shadow: 0 5px 20px var(--neon-glow);
             margin-bottom: 20px;
             letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+        .action-main-btn.copied {
+            background: linear-gradient(45deg, #00875a, #00b8d9) !important;
+            box-shadow: 0 5px 20px rgba(0, 183, 217, 0.6);
         }
         .code-display-box {
             background: #080202;
@@ -327,6 +335,38 @@
             font-weight: bold;
             margin-bottom: 18px;
             letter-spacing: 1px;
+        }
+        
+        /* Floating Toast Notification */
+        #toast {
+            visibility: hidden;
+            min-width: 150px;
+            background-color: rgba(18, 5, 5, 0.95);
+            color: #00ff66;
+            text-align: center;
+            border-radius: 12px;
+            padding: 12px;
+            position: fixed;
+            z-index: 10000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 13px;
+            font-weight: bold;
+            border: 1.5px solid var(--primary-red);
+            box-shadow: 0 0 25px var(--neon-glow);
+        }
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.3s, fadeout 0.3s 1.5s;
+        }
+        @keyframes fadein {
+            from { bottom: 0; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
+        }
+        @keyframes fadeout {
+            from { bottom: 30px; opacity: 1; }
+            to { bottom: 0; opacity: 0; }
         }
     </style>
 </head>
@@ -436,7 +476,7 @@
             <h3 id="codeModalTitle">QX LIVE CODE</h3>
             <p class="modal-desc">🪄 Copy this bookmark code and add it into your browser bookmarks.</p>
             
-            <button class="action-main-btn" onclick="copyCode()">CLICK TO COPY CODE</button>
+            <button class="action-main-btn" id="copyBtn" onclick="copyCode()">CLICK TO COPY CODE</button>
             
             <div class="code-display-box">
                 <div class="code-box-header">
@@ -482,6 +522,9 @@
         </div>
     </div>
 
+    <!-- Toast Notification -->
+    <div id="toast">COPIED SUCCESSFULLY ✓</div>
+
     <script>
         const scriptCodes = {
             'script1': "javascript:(()=>{if(document.getElementById('__mk_live__'))return;const d=document,l=d.createElement('div');l.id='__mk_live__';l.style='position:fixed;top:15px;right:15px;background:#111;border:2px solid #ff1e1e;color:#fff;padding:15px;z-index:999999;border-radius:12px;box-shadow:0 0 20px rgba(255,30,30,0.6);font-family:sans-serif;';l.innerHTML='<h4 style=\\'color:#ff1e1e;margin:0 0 8px 0\\'>😈 M.K HACKER LIVE 😈</h4><p style=\\'font-size:11px;margin:0 0 10px 0\\'>QX Suite Connected Successfully!</p><button onclick=\\'this.parentElement.remove()\\' style=\\'background:#ff1e1e;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:bold;\\'>Close</button>';d.body.appendChild(l);})();",
@@ -493,6 +536,12 @@
             sendTelegramAlert(scriptName);
             document.getElementById('codeModalTitle').innerText = scriptName;
             document.getElementById('codeText').innerText = scriptCodes[scriptKey] || "javascript:(()=>{alert('Active');})();";
+            
+            // Reset copy button state
+            const btn = document.getElementById('copyBtn');
+            btn.innerText = "CLICK TO COPY CODE";
+            btn.classList.remove('copied');
+            
             document.getElementById('codeModal').style.display = 'flex';
         }
 
@@ -515,7 +564,21 @@
         function copyCode() {
             const code = document.getElementById('codeText').innerText;
             navigator.clipboard.writeText(code);
-            alert("✅ Script Code Copied Successfully!");
+            
+            // Change button appearance like reference site
+            const btn = document.getElementById('copyBtn');
+            btn.innerText = "COPIED SUCCESSFULLY ✓";
+            btn.classList.add('copied');
+            
+            // Show custom floating toast
+            const toast = document.getElementById('toast');
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 1800);
+            
+            setTimeout(function() {
+                btn.innerText = "CLICK TO COPY CODE";
+                btn.classList.remove('copied');
+            }, 2000);
         }
 
         function sendTelegramAlert(scriptName) {
