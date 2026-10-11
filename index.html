@@ -35,10 +35,14 @@
             height: 125px;
             margin: 0 auto 15px auto;
             border-radius: 50%;
-            padding: 0;
-            background: none;
-            box-shadow: none;
-            animation: none;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            box-shadow: 0 0 45px var(--neon-glow);
+            animation: pulseLogo 2s infinite alternate;
+        }
+        @keyframes pulseLogo {
+            0% { transform: scale(1); box-shadow: 0 0 25px rgba(255, 30, 30, 0.5); }
+            100% { transform: scale(1.06); box-shadow: 0 0 55px rgba(255, 30, 30, 0.95); }
         }
         .main-logo-container img {
             width: 100%;
@@ -188,10 +192,14 @@
             100% { transform: scale(1); opacity: 1; }
         }
         .modal-logo {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
+            width: 85px;
+            height: 85px;
             margin: 0 auto 15px auto;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+            box-shadow: 0 0 30px var(--neon-glow);
+            animation: pulseLogo 2s infinite alternate;
         }
         .modal-logo img {
             width: 100%;
