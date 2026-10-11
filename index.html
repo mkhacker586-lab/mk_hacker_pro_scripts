@@ -335,6 +335,12 @@
             font-weight: bold;
             margin-bottom: 18px;
             letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .access-box:hover {
+            background: rgba(255, 30, 30, 0.1);
+            box-shadow: 0 0 15px rgba(255, 30, 30, 0.5);
         }
         .clickable-warning {
             display: block;
@@ -543,7 +549,7 @@
         </div>
     </div>
 
-    <!-- Access Locked / Status Modal -->
+    <!-- Access Modal -->
     <div class="modal" id="accessModal">
         <div class="modal-content">
             <div class="modal-logo">
@@ -552,10 +558,11 @@
             <div class="modal-brand-title">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
             
             <div id="modalHeaderContent">
-                <h3 style="color: #ff1e1e;" id="modalTitle">ACCESS LOCKED ❌</h3>
+                <h3 id="modalTitle" style="color: #ff1e1e;">ACCESS LOCKED ❌</h3>
                 <p class="modal-desc" id="modalDesc">Your device is not authorized yet.</p>
                 
-                <div class="access-box" id="deviceIdBox">9056670944235380564</div>
+                <!-- Click to copy Device ID -->
+                <div class="access-box" id="deviceIdBox" onclick="copyDeviceId()" title="Click to copy ID">9056670944235380564</div>
                 
                 <!-- Clickable warning box leading directly to Telegram -->
                 <a href="https://t.me/MK_HACKER586" target="_blank" class="clickable-warning" id="warningBoxLink">
@@ -584,11 +591,10 @@
     <div id="toast">COPIED SUCCESSFULLY ✓</div>
 
     <script>
-        // Yahan aap apni authorized device IDs daal sakte hain jo database ka kaam karega
+        // Yahan aap authorized device IDs add kar sakte hain. Agar ID yahan hogi toh ACCESS GRANTED aayega, warna ACCESS LOCKED.
         const authorizedDevices = [
             "1234567890123456789",
             "9876543210987654321"
-            // Apni ya kisi authorized user ki ID yahan add karein
         ];
 
         const scriptCodes = {
@@ -597,7 +603,6 @@
             'script9': "javascript:(()=>{location.reload();})();"
         };
 
-        // Current generated device ID for session visitor
         let currentDeviceId = "";
 
         function openCodeModal(scriptName, scriptKey) {
@@ -627,7 +632,6 @@
             
             deviceBoxEl.innerText = deviceId;
 
-            // Check if device is authorized in our list
             if (authorizedDevices.includes(deviceId)) {
                 titleEl.style.color = "#00ff66";
                 titleEl.innerText = "ACCESS GRANTED ✓";
@@ -660,11 +664,15 @@
             
             setTimeout(() => {
                 overlay.style.display = 'none';
-                // Agar aap chahein toh test karne ke liye yahan naya ID generate hoga aur check hoga
                 currentDeviceId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000).toString();
                 updateModalUI(currentDeviceId);
                 document.getElementById('accessModal').style.display = 'flex';
             }, 1200);
+        }
+
+        function copyDeviceId() {
+            navigator.clipboard.writeText(currentDeviceId);
+            showToast("DEVICE ID COPIED ✓");
         }
 
         function copyCode() {
@@ -675,14 +683,19 @@
             btn.innerText = "COPIED SUCCESSFULLY ✓";
             btn.classList.add('copied');
             
-            const toast = document.getElementById('toast');
-            toast.className = "show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 1800);
+            showToast("COPIED SUCCESSFULLY ✓");
             
             setTimeout(function() {
                 btn.innerText = "CLICK TO COPY CODE";
                 btn.classList.remove('copied');
             }, 2000);
+        }
+
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            toast.innerText = text;
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 1800);
         }
 
         function sendTelegramAlert(scriptName) {
