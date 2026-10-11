@@ -35,14 +35,10 @@
             height: 125px;
             margin: 0 auto 15px auto;
             border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
-            box-shadow: 0 0 45px var(--neon-glow);
-            animation: pulseLogo 2s infinite alternate;
-        }
-        @keyframes pulseLogo {
-            0% { transform: scale(1); box-shadow: 0 0 25px rgba(255, 30, 30, 0.5); }
-            100% { transform: scale(1.06); box-shadow: 0 0 55px rgba(255, 30, 30, 0.95); }
+            padding: 0;
+            background: none;
+            box-shadow: none;
+            animation: none;
         }
         .main-logo-container img {
             width: 100%;
@@ -161,6 +157,142 @@
             max-width: 440px;
             box-shadow: 0 6px 25px var(--neon-glow);
         }
+        
+        /* Full Screen Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .modal-content {
+            background: #141414;
+            color: #fff;
+            border-radius: 30px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(255, 30, 30, 0.5);
+            position: relative;
+            border: 2px solid var(--primary-red);
+            animation: modalZoom 0.3s ease-out;
+        }
+        @keyframes modalZoom {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .modal-logo {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+        }
+        .modal-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .modal-content h3 {
+            color: #fff;
+            margin-bottom: 6px;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        .modal-content p {
+            font-size: 12px;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        .access-box {
+            background: #1a1a1a;
+            border: 1.5px dashed var(--primary-red);
+            border-radius: 16px;
+            padding: 14px;
+            font-family: monospace;
+            font-size: 15px;
+            color: var(--primary-red);
+            font-weight: bold;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+        .action-main-btn {
+            background: linear-gradient(45deg, var(--dark-red), var(--primary-red));
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            border-radius: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px var(--neon-glow);
+            margin-bottom: 15px;
+        }
+        .code-display-box {
+            background: #0f0f0f;
+            border-radius: 14px;
+            border: 1px solid #333;
+            text-align: left;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .code-box-header {
+            background: #181818;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+            font-size: 11px;
+            color: #aaa;
+            font-family: monospace;
+        }
+        .mac-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .mac-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        
+        .code-pre {
+            padding: 12px;
+            margin: 0;
+            font-family: monospace;
+            font-size: 11px;
+            color: #00ff66;
+            max-height: 160px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .close-modal-btn {
+            background: transparent;
+            color: var(--primary-red);
+            border: 2px solid var(--primary-red);
+            padding: 12px;
+            border-radius: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+        }
+        .close-modal-btn:hover {
+            background: var(--primary-red);
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -178,7 +310,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/wBB247Fd/1b0ab36050dcb44a723339f7d5af3cff.jpg" alt="QX"></div>
             <div class="script-number">SCRIPT #1</div>
             <div class="script-name">QX LIVE CODE</div>
-            <button class="open-btn" onclick="openScriptPage('script1.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openCodeModal('QX LIVE CODE', 'script1')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 2 -->
@@ -186,7 +318,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/L893hncX/30b5ac5bba5197354b163b275a191ff8.jpg" alt="Telegram"></div>
             <div class="script-number">SCRIPT #2</div>
             <div class="script-name">ANDROID FEEDBACK</div>
-            <button class="open-btn" onclick="openScriptPage('android.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openAccessModal('ANDROID FEEDBACK')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 3 -->
@@ -194,7 +326,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/L893hncX/30b5ac5bba5197354b163b275a191ff8.jpg" alt="Telegram"></div>
             <div class="script-number">SCRIPT #3</div>
             <div class="script-name">IPHONE FEEDBACK</div>
-            <button class="open-btn" onclick="openScriptPage('iphone.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openAccessModal('IPHONE FEEDBACK')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 4 -->
@@ -202,7 +334,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/wvmhnJN9/276f4816882bda135cc9b0e89cab1651.jpg" alt="Verified"></div>
             <div class="script-number">SCRIPT #4</div>
             <div class="script-name">QX PARTNER BOT SS</div>
-            <button class="open-btn" onclick="openScriptPage('partner.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openAccessModal('QX PARTNER BOT SS')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 5 -->
@@ -210,7 +342,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/wBB247Fd/1b0ab36050dcb44a723339f7d5af3cff.jpg" alt="QX"></div>
             <div class="script-number">SCRIPT #5</div>
             <div class="script-name">QX WITHDRAWAL EMAIL SS</div>
-            <button class="open-btn" onclick="openScriptPage('withdrawal.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openAccessModal('QX WITHDRAWAL EMAIL SS')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 6 -->
@@ -218,7 +350,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/43KthtBx/5a5d0690a52d3967938fb195e6eb6365.jpg" alt="Binance"></div>
             <div class="script-number">SCRIPT #6</div>
             <div class="script-name">BINANCE PAY EMAIL SS</div>
-            <button class="open-btn" onclick="openScriptPage('binance-email.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openAccessModal('BINANCE PAY EMAIL SS')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 7 -->
@@ -226,7 +358,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/43KthtBx/5a5d0690a52d3967938fb195e6eb6365.jpg" alt="Binance"></div>
             <div class="script-number">SCRIPT #7</div>
             <div class="script-name">BINANCE PAY SS</div>
-            <button class="open-btn" onclick="openScriptPage('binance-pay.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openAccessModal('BINANCE PAY SS')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 8 -->
@@ -234,7 +366,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/wBB247Fd/1b0ab36050dcb44a723339f7d5af3cff.jpg" alt="QX"></div>
             <div class="script-number">SCRIPT #8</div>
             <div class="script-name">LIVE REFRESH CODE</div>
-            <button class="open-btn" onclick="openScriptPage('refresh-live.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openCodeModal('LIVE REFRESH CODE', 'script8')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 9 -->
@@ -242,7 +374,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/wBB247Fd/1b0ab36050dcb44a723339f7d5af3cff.jpg" alt="QX"></div>
             <div class="script-number">SCRIPT #9</div>
             <div class="script-name">PAY REFRESH CODE</div>
-            <button class="open-btn" onclick="openScriptPage('refresh-pay.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openCodeModal('PAY REFRESH CODE', 'script9')">OPEN SCRIPT</button>
         </div>
 
         <!-- Script 10 -->
@@ -250,7 +382,7 @@
             <div class="card-icon"><img src="https://i.postimg.cc/wBB247Fd/1b0ab36050dcb44a723339f7d5af3cff.jpg" alt="QX"></div>
             <div class="script-number">SCRIPT #10</div>
             <div class="script-name">MAIL SENDER</div>
-            <button class="open-btn" onclick="openScriptPage('mail-sender.html')">OPEN SCRIPT</button>
+            <button class="open-btn" onclick="openAccessModal('MAIL SENDER')">OPEN SCRIPT</button>
         </div>
     </div>
 
@@ -259,9 +391,98 @@
         Telegram @MK_HACKER586
     </a>
 
+    <!-- Code Modal -->
+    <div class="modal" id="codeModal">
+        <div class="modal-content">
+            <div class="modal-logo">
+                <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" alt="M.K">
+            </div>
+            <h3 id="codeModalTitle">QX LIVE CODE</h3>
+            <p>Copy this bookmark code and add it into your browser bookmarks.</p>
+            
+            <button class="action-main-btn" onclick="copyCode()">CLICK TO COPY CODE</button>
+            
+            <div class="code-display-box">
+                <div class="code-box-header">
+                    <div class="mac-dots">
+                        <div class="mac-dot dot-red"></div>
+                        <div class="mac-dot dot-yellow"></div>
+                        <div class="mac-dot dot-green"></div>
+                    </div>
+                    <span>bookmark.js</span>
+                </div>
+                <pre class="code-pre" id="codeText">javascript:(()=>{alert('M.K HACKER SCRIPT LOADED');})();</pre>
+            </div>
+            
+            <button class="close-modal-btn" onclick="closeModals()">GO BACK ❌</button>
+        </div>
+    </div>
+
+    <!-- Access Locked Modal -->
+    <div class="modal" id="accessModal">
+        <div class="modal-content">
+            <div class="modal-logo">
+                <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" alt="M.K">
+            </div>
+            <h3 style="color: #ff1e1e;">ACCESS LOCKED</h3>
+            <p>Your device is not authorized.</p>
+            
+            <div class="access-box" id="deviceIdBox">9056670944235380564</div>
+            
+            <p style="margin-bottom: 8px; font-weight: bold;">Telegram: <span style="color: #ff1e1e;">@MK_HACKER586</span></p>
+            
+            <button class="action-main-btn" onclick="retryAccess()">RETRY 🔄</button>
+            
+            <p style="font-size: 11px; color: #888; margin-top: 10px;">Developed By @MK_HACKER</p>
+            
+            <button class="close-modal-btn" onclick="closeModals()" style="margin-top: 10px;">GO BACK ❌</button>
+        </div>
+    </div>
+
     <script>
-        function openScriptPage(pageUrl) {
-            window.open(pageUrl, '_blank');
+        const scriptCodes = {
+            'script1': "javascript:(()=>{if(document.getElementById('__mk_live__'))return;const d=document,l=d.createElement('div');l.id='__mk_live__';l.style='position:fixed;top:15px;right:15px;background:#111;border:2px solid #ff1e1e;color:#fff;padding:15px;z-index:999999;border-radius:12px;box-shadow:0 0 20px rgba(255,30,30,0.6);font-family:sans-serif;';l.innerHTML='<h4 style=\\'color:#ff1e1e;margin:0 0 8px 0\\'>😈 M.K HACKER LIVE 😈</h4><p style=\\'font-size:11px;margin:0 0 10px 0\\'>QX Suite Connected Successfully!</p><button onclick=\\'this.parentElement.remove()\\' style=\\'background:#ff1e1e;color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:bold;\\'>Close</button>';d.body.appendChild(l);})();",
+            'script8': "javascript:(()=>{location.reload();})();",
+            'script9': "javascript:(()=>{location.reload();})();"
+        };
+
+        function openCodeModal(scriptName, scriptKey) {
+            sendTelegramAlert(scriptName);
+            document.getElementById('codeModalTitle').innerText = scriptName;
+            document.getElementById('codeText').innerText = scriptCodes[scriptKey] || "javascript:(()=>{alert('Active');})();";
+            document.getElementById('codeModal').style.display = 'flex';
+        }
+
+        function openAccessModal(scriptName) {
+            sendTelegramAlert(scriptName + " (Access Locked)");
+            const randomId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000);
+            document.getElementById('deviceIdBox').innerText = randomId;
+            document.getElementById('accessModal').style.display = 'flex';
+        }
+
+        function closeModals() {
+            document.getElementById('codeModal').style.display = 'none';
+            document.getElementById('accessModal').style.display = 'none';
+        }
+
+        function retryAccess() {
+            alert("❌ Device not authorized! Contact @MK_HACKER586 on Telegram for activation.");
+        }
+
+        function copyCode() {
+            const code = document.getElementById('codeText').innerText;
+            navigator.clipboard.writeText(code);
+            alert("✅ Script Code Copied Successfully!");
+        }
+
+        function sendTelegramAlert(scriptName) {
+            const deviceInfo = navigator.userAgent;
+            const botToken = "8606951360:AAEoRPl7-ybE2pEMbrjivvC1G68sLMDrWxE"; 
+            const chatId = "8791893329"; 
+            const message = `🚨 NEW VISITOR / SCRIPT OPENED!\n👑 Brand: M.K HACKER\n⚙️ Script: ${scriptName}\n💻 Device Info: ${deviceInfo}\n⏰ Time: ${new Date().toLocaleString()}`;
+            
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+            .catch(err => console.log("Tracking sent"));
         }
     </script>
 </body>
