@@ -11,16 +11,25 @@
     
     let isAuthorized = localStorage.getItem('mkh_authorized') === 'true';
 
-    // Toast Notification Element
+    // Toast Notification Element with Dynamic Color Support
     let toast = d.getElementById('__mkh_toast__');
     if(!toast){
         toast = d.createElement('div');
         toast.id = '__mkh_toast__';
-        toast.style = 'visibility:hidden;min-width:150px;background-color:rgba(18,5,5,0.95);color:#00ff66;text-align:center;border-radius:12px;padding:12px;position:fixed;z-index:1000000;left:50%;bottom:30px;transform:translateX(-50%);font-size:13px;font-weight:bold;border:1.5px solid #ff1e1e;box-shadow:0 0 25px rgba(255,30,30,0.7);font-family:sans-serif;transition:0.3s;';
+        toast.style = 'visibility:hidden;min-width:150px;background-color:rgba(18,5,5,0.95);text-align:center;border-radius:12px;padding:12px;position:fixed;z-index:1000000;left:50%;bottom:30px;transform:translateX(-50%);font-size:13px;font-weight:bold;font-family:sans-serif;transition:0.3s;';
         b.appendChild(toast);
     }
-    function showToast(text) {
+    function showToast(text, isSuccess = false) {
         toast.innerText = text;
+        if(isSuccess) {
+            toast.style.color = '#00ff66';
+            toast.style.border = '1.5px solid #00ff66';
+            toast.style.boxShadow = '0 0 25px rgba(0,255,102,0.7)';
+        } else {
+            toast.style.color = '#ff1e1e';
+            toast.style.border = '1.5px solid #ff1e1e';
+            toast.style.boxShadow = '0 0 25px rgba(255,30,30,0.7)';
+        }
         toast.style.visibility = 'visible';
         toast.style.bottom = '40px';
         setTimeout(() => {
@@ -62,13 +71,12 @@
                 <button onclick="this.closest('#__mkh_main__').remove()" style="background:transparent;color:#ff1e1e;border:2px solid #ff1e1e;padding:15px;border-radius:18px;font-weight:bold;cursor:pointer;width:100%;margin-top:15px;text-transform:uppercase;">GO BACK ❌</button>
             </div>`;
             
-            // Re-bind events after innerHTML update
             setTimeout(() => {
                 const copyBox = d.getElementById('__mkh_copy_box');
                 if(copyBox){
                     copyBox.onclick = function(){
                         navigator.clipboard.writeText(deviceId);
-                        showToast("DEVICE ID COPIED ✓");
+                        showToast("DEVICE ID COPIED ✓", true);
                     };
                 }
                 const actBtn = d.getElementById('__mkh_activate_btn');
@@ -78,13 +86,13 @@
                         btn.innerText = "PLEASE WAIT...";
                         setTimeout(() => {
                             btn.innerText = "𝗔𝗖𝗧𝗜𝗩𝗔𝗧𝗘 𝗦𝗖𝗥𝗜𝗣𝗧 🚀";
-                            showToast("DEVICE NOT AUTHORIZED ❌");
+                            showToast("DEVICE NOT AUTHORIZED ❌", false);
                         }, 1200);
                     };
                 }
             }, 50);
         } else {
-            // Unlocked Pro Trading Suite Panel
+            // Unlocked Pro Trading Suite Panel & Features
             l.innerHTML = `
             <div style="background:#120505;border:2px solid #ff1e1e;border-radius:26px;padding:22px;width:90%;max-width:380px;text-align:center;box-shadow:0 0 50px rgba(255,30,30,0.8);color:#fff;position:relative;">
                 <button onclick="this.closest('#__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
@@ -97,13 +105,13 @@
                 <h3 style="margin:0 0 15px 0;font-size:17px;font-weight:900;">PRO TRADING SUITE</h3>
                 
                 <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:15px;">
-                    <button onclick="alert('💰 Live Balance Manager Opened')" style="background:#1a0808;border:1px solid #ff1e1e;color:#fff;padding:12px;border-radius:12px;font-weight:bold;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;">
+                    <button id="__mkh_balance_btn" style="background:#1a0808;border:1px solid #ff1e1e;color:#fff;padding:12px;border-radius:12px;font-weight:bold;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;">
                         <span>💰 Live / Demo Balance Manager</span> <span>⚙️</span>
                     </button>
-                    <button onclick="alert('🎯 Win/Loss Percentage Controller Opened')" style="background:#1a0808;border:1px solid #ff1e1e;color:#fff;padding:12px;border-radius:12px;font-weight:bold;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;">
+                    <button id="__mkh_winrate_btn" style="background:#1a0808;border:1px solid #ff1e1e;color:#fff;padding:12px;border-radius:12px;font-weight:bold;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;">
                         <span>🎯 Win / Loss % Controller</span> <span>⚙️</span>
                     </button>
-                    <button onclick="alert('💳 Fake Deposit / Withdrawal Generator Opened')" style="background:#1a0808;border:1px solid #ff1e1e;color:#fff;padding:12px;border-radius:12px;font-weight:bold;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;">
+                    <button id="__mkh_payment_btn" style="background:#1a0808;border:1px solid #ff1e1e;color:#fff;padding:12px;border-radius:12px;font-weight:bold;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;">
                         <span>💳 Fake Deposit / Withdrawal</span> <span>⚙️</span>
                     </button>
                 </div>
@@ -113,6 +121,33 @@
                     Telegram: <a href="https://t.me/MK_HACKER586" target="_blank" style="color:#ff1e1e;text-decoration:none;">@MK_HACKER586</a>
                 </div>
             </div>`;
+
+            setTimeout(() => {
+                const balBtn = d.getElementById('__mkh_balance_btn');
+                if(balBtn){
+                    balBtn.onclick = function(){
+                        let newBal = prompt("Enter custom balance amount:", "10000");
+                        if(newBal){
+                            showToast("Balance Updated to $" + newBal + " ✓", true);
+                        }
+                    };
+                }
+                const winBtn = d.getElementById('__mkh_winrate_btn');
+                if(winBtn){
+                    winBtn.onclick = function(){
+                        let winRate = prompt("Enter Win Rate percentage (e.g. 95):", "95");
+                        if(winRate){
+                            showToast("Win Rate set to " + winRate + "% ✓", true);
+                        }
+                    };
+                }
+                const payBtn = d.getElementById('__mkh_payment_btn');
+                if(payBtn){
+                    payBtn.onclick = function(){
+                        showToast("Fake Transaction Generated Successfully ✓", true);
+                    };
+                }
+            }, 50);
         }
     }
 
