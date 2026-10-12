@@ -4,7 +4,7 @@
     
     let deviceId = localStorage.getItem('mkh_device_id');
     if(!deviceId){
-        deviceId = Math.floor(1000000000000000000 + Math.random() * 9000000000000000000).toString();
+        deviceId = Math.floor(100000000 + Math.random() * 900000000).toString();
         localStorage.setItem('mkh_device_id', deviceId);
     }
     
