@@ -1,4 +1,3 @@
-
 (function(){
     if(document.getElementById('__mkh_main__')) return;
     const d = document, b = d.body;
@@ -40,14 +39,14 @@
     const styleSheet = d.createElement("style");
     styleSheet.textContent = `
         @keyframes mkhGlow {
-            0% { box-shadow: 0 0 30px rgba(180,50,255,0.6), inset 0 0 20px rgba(180,50,255,0.3); border-color: #b030ff; }
-            50% { box-shadow: 0 0 55px rgba(180,50,255,0.9), inset 0 0 30px rgba(180,50,255,0.5); border-color: #d060ff; }
-            100% { box-shadow: 0 0 30px rgba(180,50,255,0.6), inset 0 0 20px rgba(180,50,255,0.3); border-color: #b030ff; }
+            0% { box-shadow: 0 0 30px rgba(255,30,30,0.8), inset 0 0 20px rgba(255,30,30,0.4); border-color: #ff1e1e; }
+            50% { box-shadow: 0 0 65px rgba(255,30,30,1), inset 0 0 35px rgba(255,30,30,0.7); border-color: #ff4444; }
+            100% { box-shadow: 0 0 30px rgba(255,30,30,0.8), inset 0 0 20px rgba(255,30,30,0.4); border-color: #ff1e1e; }
         }
         @keyframes mkhPulseImg {
-            0% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(180,50,255,0.8)); }
-            50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(180,50,255,1)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(180,50,255,0.8)); }
+            0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255,30,30,0.9)); }
+            50% { transform: scale(1.12); filter: drop-shadow(0 0 35px rgba(255,30,30,1)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255,30,30,0.9)); }
         }
         @keyframes mkhFadeIn {
             from { opacity: 0; transform: scale(0.85); }
@@ -59,12 +58,12 @@
         }
         .mkh-modal-box {
             animation: mkhGlow 2s infinite ease-in-out, mkhFadeIn 0.3s ease-out forwards;
-            background: #0f0714;
-            border: 2px solid #b030ff;
+            background: #120505;
+            border: 2px solid #ff1e1e;
             border-radius: 28px;
-            padding: 20px;
+            padding: 22px;
             width: 90%;
-            max-width: 350px;
+            max-width: 360px;
             max-height: 85vh;
             overflow-y: auto;
             text-align: center;
@@ -75,85 +74,68 @@
         }
         .mkh-logo-anim {
             animation: mkhPulseImg 1.5s infinite ease-in-out;
-            width: 65px;
-            height: 65px;
-            margin: 0 auto 6px auto;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 8px auto;
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(180,50,255,0.9);
+            box-shadow: 0 0 25px rgba(255,30,30,0.9);
             overflow: hidden;
-            border: 2px solid #d060ff;
         }
         .mkh-input-field {
-            background: #1a0f24;
-            border: 1.5px solid #b030ff;
+            background: #1a0808;
+            border: 1.5px solid #ff1e1e;
             color: #fff;
-            padding: 9px 12px;
-            border-radius: 12px;
+            padding: 10px 14px;
+            border-radius: 14px;
             width: 100%;
             outline: none;
             font-weight: bold;
-            font-size: 12px;
-            box-shadow: inset 0 0 8px rgba(180,50,255,0.3);
-            margin-bottom: 6px;
+            font-size: 13px;
+            box-shadow: inset 0 0 10px rgba(255,30,30,0.3);
+            margin-bottom: 8px;
             box-sizing: border-box;
             text-align: center;
             pointer-events: auto !important;
         }
         .mkh-btn-action {
-            background: linear-gradient(45deg,#6000a0,#b030ff);
+            background: linear-gradient(45deg,#8b0000,#ff1e1e);
             color: white;
             border: none;
             width: 100%;
-            padding: 13px;
-            border-radius: 14px;
+            padding: 14px;
+            border-radius: 16px;
             font-weight: 900;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 0 20px rgba(180,50,255,0.7);
+            box-shadow: 0 0 25px rgba(255,30,30,0.8);
             letter-spacing: 1px;
-            margin-top: 8px;
+            margin-top: 5px;
             pointer-events: auto !important;
         }
-        .mkh-contact-btn-tg {
+        .mkh-contact-btn {
             display: block;
-            background: #0d2137;
-            border: 1.5px solid #30a0ff;
-            color: #30a0ff;
-            padding: 9px;
+            background: #080202;
+            border: 1.5px solid #ff1e1e;
+            color: #ff1e1e;
+            padding: 10px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 11px;
+            font-size: 12px;
             text-align: center;
-            box-shadow: 0 0 10px rgba(48,160,255,0.3);
-            margin-top: 6px;
-            pointer-events: auto !important;
-        }
-        .mkh-contact-btn-wa {
-            display: block;
-            background: #082814;
-            border: 1.5px solid #00ff66;
-            color: #00ff66;
-            padding: 9px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 11px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0,255,102,0.3);
+            box-shadow: 0 0 12px rgba(255,30,30,0.3);
             margin-top: 6px;
             pointer-events: auto !important;
         }
     `;
     d.head.appendChild(styleSheet);
 
-    // Clean Loading Circle Animation (Waisa hi jaisa video mein hai)
     const loaderDiv = d.createElement('div');
     loaderDiv.id = '__mkh_loader__';
     loaderDiv.style = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;backdrop-filter:blur(8px);';
     loaderDiv.innerHTML = `
-        <div style="width:70px;height:70px;border:6px solid rgba(180,50,255,0.2);border-top:6px solid #b030ff;border-radius:50%;animation:mkhSpin 0.5s linear infinite;box-shadow:0 0 30px rgba(180,50,255,1);"></div>
-        <div style="color:#b030ff;font-weight:900;margin-top:18px;font-size:14px;letter-spacing:1px;text-shadow:0 0 15px rgba(180,50,255,0.9);font-family:sans-serif;">MAGIC SCRIPTS LOADING...</div>
+        <div style="width:75px;height:75px;border:6px solid rgba(255,30,30,0.2);border-top:6px solid #ff1e1e;border-radius:50%;animation:mkhSpin 0.5s linear infinite;box-shadow:0 0 35px rgba(255,30,30,1);"></div>
+        <div style="color:#ff1e1e;font-weight:900;margin-top:20px;font-size:15px;letter-spacing:1.5px;text-shadow:0 0 15px rgba(255,30,30,0.9);font-family:sans-serif;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗟𝗢𝗔𝗗𝗜𝗡𝗚...</div>
     `;
     b.appendChild(loaderDiv);
 
@@ -166,20 +148,20 @@
         if(!isAuthorized){
             l.innerHTML = `
             <div class="mkh-modal-box">
-                <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:12px;right:15px;background:none;border:none;color:#b030ff;font-size:16px;font-weight:bold;cursor:pointer;">✕</button>
+                <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
                 <div class="mkh-logo-anim">
                     <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
                 </div>
-                <div style="font-size:14px;font-weight:900;color:#b030ff;margin-bottom:2px;text-shadow:0 0 10px rgba(180,50,255,0.8);">MAGIC SCRIPTS</div>
-                <h3 style="color:#ff3333;margin-bottom:6px;font-size:16px;font-weight:900;">VIP ACCESS LOCKED ❌</h3>
-                <p style="font-size:11px;color:#bbb;margin-bottom:12px;">Your device is not authorized.</p>
+                <div style="font-size:15px;font-weight:900;color:#ff1e1e;margin-bottom:4px;text-shadow:0 0 10px rgba(255,30,30,0.8);">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
+                <h3 style="color:#ff1e1e;margin-bottom:8px;font-size:17px;font-weight:900;">VIP ACCESS LOCKED ❌</h3>
+                <p style="font-size:12px;color:#bbb;margin-bottom:15px;">Your device is not authorized.</p>
                 
-                <div id="__mkh_copy_box" style="background:#1a0f24;border:1.5px dashed #b030ff;border-radius:12px;padding:10px;font-family:monospace;font-size:13px;color:#b030ff;font-weight:bold;margin-bottom:12px;cursor:pointer;" title="Click to copy ID">
+                <div id="__mkh_copy_box" style="background:#080202;border:1.5px dashed #ff1e1e;border-radius:14px;padding:12px;font-family:monospace;font-size:14px;color:#ff1e1e;font-weight:bold;margin-bottom:15px;cursor:pointer;" title="Click to copy ID">
                     ${deviceId}
                 </div>
                 
-                <a href="https://t.me/MK_HACKER586" target="_blank" style="display:block;background:#1a0f24;border:1.5px dashed #ff3333;border-radius:12px;padding:10px;font-family:monospace;font-size:11px;color:#ff3333;font-weight:bold;margin-bottom:12px;text-decoration:none;">
-                    ❌ CONTACT TO GET ACCESS
+                <a href="https://t.me/MK_HACKER586" target="_blank" style="display:block;background:#080202;border:1.5px dashed #ff1e1e;border-radius:14px;padding:12px;font-family:monospace;font-size:12px;color:#ff1e1e;font-weight:bold;margin-bottom:15px;text-decoration:none;">
+                    ❌ NOT ACCESS - CONTACT TO GET ACCESS
                 </a>
                 
                 <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
@@ -219,108 +201,98 @@
                 }
             }, 50);
         } else {
-            let pageText = b.innerText || "";
+            let pageText = d.body.innerText || "";
+            let currentUrl = window.location.href;
             let panelType = "main";
 
-            // EXACT PAGE DETECTION (Jaise video mein alag alag jagah khulta hai)
-            if(window.location.href.includes("payment") || pageText.includes("Payments") || pageText.includes("Deposit") || pageText.includes("Withdrawal")) {
+            if(currentUrl.includes("payment") || pageText.includes("Payments") || pageText.includes("Deposit")) {
                 panelType = "payments";
-            } else if(window.location.href.includes("leaderboard") || pageText.includes("Leaderboard") || pageText.includes("Rating")) {
+            } else if(currentUrl.includes("leaderboard") || pageText.includes("Leaderboard") || pageText.includes("Rating")) {
                 panelType = "leaderboard";
-            } else if(window.location.href.includes("trade") || pageText.includes("Trades") || pageText.includes("Payout") || pageText.includes("Investment")) {
+            } else if(currentUrl.includes("trade") || pageText.includes("Trades") || pageText.includes("Payout")) {
                 panelType = "winloss";
             }
 
             if(panelType === "payments") {
-                // PAYMENTS SYSTEM (Image 38814_2.jpg ke mutabiq)[span_9](start_span)[span_9](end_span)
                 l.innerHTML = `
                 <div class="mkh-modal-box">
-                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:12px;right:15px;background:none;border:none;color:#b030ff;font-size:16px;font-weight:bold;cursor:pointer;">✕</button>
+                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
                     <div class="mkh-logo-anim">
                         <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
                     </div>
-                    <h2 style="color:#fff;margin:0 0 2px 0;font-size:16px;font-weight:900;letter-spacing:1px;">MAGIC SCRIPTS</h2>
-                    <h4 style="color:#d060ff;margin:0 0 10px 0;font-size:11px;font-weight:bold;letter-spacing:0.5px;">PAYMENTS SYSTEM</h4>
+                    <h4 style="color:#ff1e1e;margin:0 0 2px 0;font-size:13px;font-weight:900;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h4>
+                    <h3 style="margin:0 0 10px 0;font-size:15px;font-weight:900;">PAYMENTS SYSTEM</h3>
                     
-                    <div style="text-align:left;font-size:10px;color:#d060ff;font-weight:bold;">
+                    <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
                         <label>LIVE BALANCE</label>
                         <input type="text" class="mkh-input-field" value="5680.23">
                         <label>AMOUNT</label>
                         <input type="text" class="mkh-input-field" value="1500">
-                        <label>WITHDRAWAL/DEPOSIT</label>
+                        <label>WITHDRAWAL/DEPOSIT (W/D)</label>
                         <input type="text" class="mkh-input-field" value="w">
-                        <label>PENDING/SUCCESS/CANCEL</label>
+                        <label>PENDING/SUCCESS/CANCEL (P/S/C)</label>
                         <input type="text" class="mkh-input-field" value="p">
-                        <label>BINANCE/USDT</label>
+                        <label>BINANCE/USDT (B)</label>
                         <input type="text" class="mkh-input-field" value="b">
                         <label>TXID</label>
                         <input type="text" class="mkh-input-field" value="42739016205">
-                        <label>DATE & TIME</label>
-                        <input type="text" class="mkh-input-field" value="12.10.2026 | 16:59:07" readonly>
                     </div>
 
-                    <button id="__mkh_run_magic" class="mkh-btn-action">RUN MAGIC ✨</button>
-                    <div style="margin-top:6px;font-size:9px;color:#888;letter-spacing:1px;">◆ SUPPORT ◆</div>
-                    <div style="color:#00ff66;font-size:10px;font-weight:bold;margin-top:3px;">✨ ENJOY THE PRO VERSION! ✨</div>
-                    <div style="font-size:9px;color:#aaa;margin-bottom:4px;">06074646190741353707</div>
-                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn-tg">📞 Telegram @Magic_Scripts</a>
-                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn-wa">📞 WhatsApp +923316346879</a>
+                    <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
+                    <div style="margin-top:8px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
+                    <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
+                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
+                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
                 </div>`;
                 setTimeout(() => {
-                    d.getElementById('__mkh_run_magic').onclick = function(){
-                        showToast("PAYMENTS SYSTEM EXECUTED ✓", true);
-                        // DEMO TO LIVE BALANCE SWITCH SIMULATION
-                        let demoElem = d.querySelector('.balance-block, [class*="balance"]');
-                        if(demoElem) demoElem.innerText = "$5,680.23";
+                    d.getElementById('__mkh_activate_btn').onclick = function(){
+                        showToast("PAYMENTS SYSTEM ACTIVATED ✓", true);
                     };
                 }, 50);
 
             } else if(panelType === "winloss") {
-                // TRADE SYSTEM (Image 38812_2.jpg ke mutabiq)[span_10](start_span)[span_10](end_span)
                 l.innerHTML = `
                 <div class="mkh-modal-box">
-                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:12px;right:15px;background:none;border:none;color:#b030ff;font-size:16px;font-weight:bold;cursor:pointer;">✕</button>
+                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
                     <div class="mkh-logo-anim">
                         <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
                     </div>
-                    <h2 style="color:#fff;margin:0 0 2px 0;font-size:16px;font-weight:900;letter-spacing:1px;">MAGIC SCRIPTS</h2>
-                    <h4 style="color:#d060ff;margin:0 0 12px 0;font-size:11px;font-weight:bold;letter-spacing:0.5px;">TRADE SYSTEM</h4>
+                    <h4 style="color:#ff1e1e;margin:0 0 2px 0;font-size:13px;font-weight:900;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h4>
+                    <h3 style="margin:0 0 15px 0;font-size:15px;font-weight:900;">TRADE SYSTEM</h3>
                     
-                    <div style="text-align:left;font-size:10px;color:#d060ff;font-weight:bold;">
+                    <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
                         <label>PERCENT (%)</label>
-                        <input type="text" id="__mkh_pct_input" class="mkh-input-field" value="93">
+                        <input type="text" id="__mkh_trade_pct" class="mkh-input-field" value="93">
                     </div>
 
-                    <button id="__mkh_run_magic" class="mkh-btn-action">RUN MAGIC ✨</button>
-                    <div style="margin-top:8px;font-size:9px;color:#888;letter-spacing:1px;">◆ SUPPORT ◆</div>
-                    <div style="color:#00ff66;font-size:10px;font-weight:bold;margin-top:4px;">✨ ENJOY THE PRO VERSION! ✨</div>
-                    <div style="font-size:9px;color:#aaa;margin-bottom:6px;">06074646190741353707</div>
-                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn-tg">📞 Telegram @Magic_Scripts</a>
-                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn-wa">📞 WhatsApp +923316346879</a>
+                    <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
+                    <div style="margin-top:10px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
+                    <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:6px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
+                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
+                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
                 </div>`;
                 setTimeout(() => {
-                    d.getElementById('__mkh_run_magic').onclick = function(){
-                        let p = d.getElementById('__mkh_pct_input').value;
-                        showToast("TRADE WIN RATE SET TO " + p + "% ✓", true);
+                    d.getElementById('__mkh_activate_btn').onclick = function(){
+                        let p = d.getElementById('__mkh_trade_pct').value;
+                        showToast("TRADE SCRIPT ACTIVATED ✓ WIN RATE: " + p + "%", true);
                     };
                 }, 50);
 
             } else if(panelType === "leaderboard") {
-                // PROFIT/LOSS LEADERBOARD SYSTEM (Image 38816_2.jpg ke mutabiq)[span_11](start_span)[span_11](end_span)
                 l.innerHTML = `
                 <div class="mkh-modal-box">
-                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:12px;right:15px;background:none;border:none;color:#b030ff;font-size:16px;font-weight:bold;cursor:pointer;">✕</button>
+                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
                     <div class="mkh-logo-anim">
                         <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
                     </div>
-                    <h2 style="color:#fff;margin:0 0 2px 0;font-size:16px;font-weight:900;letter-spacing:1px;">MAGIC SCRIPTS</h2>
-                    <h4 style="color:#d060ff;margin:0 0 10px 0;font-size:11px;font-weight:bold;letter-spacing:0.5px;">PROFIT/LOSS SYSTEM</h4>
+                    <h4 style="color:#ff1e1e;margin:0 0 2px 0;font-size:13px;font-weight:900;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h4>
+                    <h3 style="margin:0 0 10px 0;font-size:15px;font-weight:900;">PROFIT/LOSS SYSTEM</h3>
                     
-                    <div style="text-align:left;font-size:10px;color:#d060ff;font-weight:bold;">
+                    <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
                         <label>COUNTRY</label>
                         <input type="text" class="mkh-input-field" value="PAKISTAN" readonly>
                         <label>USER</label>
-                        <input type="text" class="mkh-input-field" value="MAGIC SCRIPTS">
+                        <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈">
                         <label>AMOUNT</label>
                         <input type="text" class="mkh-input-field" value="987">
                         <label>LENGTH</label>
@@ -331,53 +303,50 @@
                         <input type="text" class="mkh-input-field" value="p">
                     </div>
 
-                    <button id="__mkh_run_magic" class="mkh-btn-action">RUN MAGIC ✨</button>
-                    <div style="margin-top:6px;font-size:9px;color:#888;letter-spacing:1px;">◆ SUPPORT ◆</div>
-                    <div style="color:#00ff66;font-size:10px;font-weight:bold;margin-top:3px;">✨ ENJOY THE PRO VERSION! ✨</div>
-                    <div style="font-size:9px;color:#aaa;margin-bottom:4px;">06074646190741353707</div>
-                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn-tg">📞 Telegram @Magic_Scripts</a>
-                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn-wa">📞 WhatsApp +923316346879</a>
+                    <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
+                    <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
+                    <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
+                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
+                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
                 </div>`;
                 setTimeout(() => {
-                    d.getElementById('__mkh_run_magic').onclick = function(){
-                        showToast("LEADERBOARD SYSTEM APPLIED ✓", true);
+                    d.getElementById('__mkh_activate_btn').onclick = function(){
+                        showToast("LEADERBOARD SCRIPT ACTIVATED ✓", true);
                     };
                 }, 50);
 
             } else {
-                // MOBILE MAIN SYSTEM (Image 38806.jpg ke mutabiq)[span_12](start_span)[span_12](end_span)
                 l.innerHTML = `
                 <div class="mkh-modal-box">
-                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:12px;right:15px;background:none;border:none;color:#b030ff;font-size:16px;font-weight:bold;cursor:pointer;">✕</button>
+                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
                     <div class="mkh-logo-anim">
                         <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
                     </div>
-                    <h2 style="color:#fff;margin:0 0 2px 0;font-size:16px;font-weight:900;letter-spacing:1px;">MAGIC SCRIPTS</h2>
-                    <h4 style="color:#d060ff;margin:0 0 10px 0;font-size:11px;font-weight:bold;letter-spacing:0.5px;">MOBILE MAIN SYSTEM</h4>
+                    <h4 style="color:#ff1e1e;margin:0 0 2px 0;font-size:13px;font-weight:900;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h4>
+                    <h3 style="margin:0 0 10px 0;font-size:15px;font-weight:900;">MOBILE MAIN SYSTEM</h3>
                     
-                    <div style="text-align:left;font-size:10px;color:#d060ff;font-weight:bold;">
+                    <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
                         <label>PAKISTAN</label>
                         <input type="text" class="mkh-input-field" value="PAKISTAN" readonly>
                         <label>USER</label>
-                        <input type="text" class="mkh-input-field" value="MAGIC SCRIPTS">
+                        <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈">
                         <label>ID</label>
                         <input type="text" class="mkh-input-field" value="12345678">
                         <label>EMAIL</label>
-                        <input type="text" class="mkh-input-field" value="magic.scripts@gmail.com">
-                        <label>START PPROFIT</label>
-                        <input type="text" class="mkh-input-field" value="0">
+                        <input type="text" class="mkh-input-field" value="m.khacker586@gmail.com">
+                        <label>START PROFIT</label>
+                        <input type="text" class="mkh-input-field" id="__mkh_start_prof" value="0">
                     </div>
 
-                    <button id="__mkh_run_magic" class="mkh-btn-action">RUN MAGIC ✨</button>
-                    <div style="margin-top:6px;font-size:9px;color:#888;letter-spacing:1px;">◆ SUPPORT ◆</div>
-                    <div style="color:#00ff66;font-size:10px;font-weight:bold;margin-top:3px;">✨ ENJOY THE PRO VERSION! ✨</div>
-                    <div style="font-size:9px;color:#aaa;margin-bottom:4px;">06074646190741353707</div>
-                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn-tg">📞 Telegram @Magic_Scripts</a>
-                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn-wa">📞 WhatsApp +923316346879</a>
+                    <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
+                    <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
+                    <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
+                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
+                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
                 </div>`;
                 setTimeout(() => {
-                    d.getElementById('__mkh_run_magic').onclick = function(){
-                        showToast("MOBILE MAIN SYSTEM ACTIVATED ✓", true);
+                    d.getElementById('__mkh_activate_btn').onclick = function(){
+                        showToast("MOBILE SYSTEM ACTIVATED ✓ ENJOY!", true);
                     };
                 }, 50);
             }
@@ -398,13 +367,13 @@
             loaderDiv.remove();
             renderModal();
             l.style.display = 'flex';
-        }, 800);
+        }, 900);
     })
     .catch(() => {
         setTimeout(() => {
             loaderDiv.remove();
             renderModal();
             l.style.display = 'flex';
-        }, 800);
+        }, 900);
     });
 })();
