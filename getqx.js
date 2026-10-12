@@ -49,7 +49,7 @@
             100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255,30,30,0.9)); }
         }
         @keyframes mkhFadeIn {
-            from { opacity: 0; transform: scale(0.8); }
+            from { opacity: 0; transform: scale(0.85); }
             to { opacity: 1; transform: scale(1); }
         }
         @keyframes mkhSpin {
@@ -57,24 +57,41 @@
             100% { transform: rotate(360deg); }
         }
         .mkh-modal-box {
-            animation: mkhGlow 2s infinite ease-in-out, mkhFadeIn 0.35s ease-out forwards;
+            animation: mkhGlow 2s infinite ease-in-out, mkhFadeIn 0.3s ease-out forwards;
+            background: #120505;
+            border: 2px solid #ff1e1e;
+            border-radius: 28px;
+            padding: 22px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            box-sizing: border-box;
         }
         .mkh-logo-anim {
             animation: mkhPulseImg 1.5s infinite ease-in-out;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 8px auto;
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(255,30,30,0.9);
+            overflow: hidden;
         }
         .mkh-input-field {
             background: #1a0808;
             border: 1.5px solid #ff1e1e;
             color: #fff;
             padding: 10px 14px;
-            border-radius: 12px;
+            border-radius: 14px;
             width: 100%;
             outline: none;
             font-weight: bold;
             font-size: 13px;
             box-shadow: inset 0 0 10px rgba(255,30,30,0.3);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             box-sizing: border-box;
+            text-align: center;
         }
         .mkh-btn-action {
             background: linear-gradient(45deg,#8b0000,#ff1e1e);
@@ -88,11 +105,7 @@
             text-transform: uppercase;
             box-shadow: 0 0 25px rgba(255,30,30,0.8);
             letter-spacing: 1px;
-            transition: 0.2s;
-        }
-        .mkh-btn-action:hover {
-            opacity: 0.9;
-            transform: scale(0.98);
+            margin-top: 5px;
         }
         .mkh-contact-btn {
             display: block;
@@ -111,12 +124,13 @@
     `;
     d.head.appendChild(styleSheet);
 
+    // Clean Red Loading Circle Animation (Jaise video mein hai)
     const loaderDiv = d.createElement('div');
     loaderDiv.id = '__mkh_loader__';
     loaderDiv.style = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;backdrop-filter:blur(8px);';
     loaderDiv.innerHTML = `
-        <div style="width:85px;height:85px;border:7px solid rgba(255,30,30,0.2);border-top:7px solid #ff1e1e;border-radius:50%;animation:mkhSpin 0.5s linear infinite;box-shadow:0 0 40px rgba(255,30,30,1);"></div>
-        <div style="color:#ff1e1e;font-weight:900;margin-top:22px;font-size:16px;letter-spacing:2px;text-shadow:0 0 20px rgba(255,30,30,0.9);font-family:sans-serif;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗟𝗢𝗔𝗗𝗜𝗡𝗚...</div>
+        <div style="width:75px;height:75px;border:6px solid rgba(255,30,30,0.2);border-top:6px solid #ff1e1e;border-radius:50%;animation:mkhSpin 0.5s linear infinite;box-shadow:0 0 35px rgba(255,30,30,1);"></div>
+        <div style="color:#ff1e1e;font-weight:900;margin-top:20px;font-size:15px;letter-spacing:1.5px;text-shadow:0 0 15px rgba(255,30,30,0.9);font-family:sans-serif;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 𝗟𝗢𝗔𝗗𝗜𝗡𝗚...</div>
     `;
     b.appendChild(loaderDiv);
 
@@ -128,30 +142,24 @@
     function renderModal() {
         if(!isAuthorized){
             l.innerHTML = `
-            <div class="mkh-modal-box" style="background:#120505;color:#fff;border-radius:30px;padding:30px 20px;width:90%;max-width:400px;text-align:center;position:relative;border:2px solid #ff1e1e;">
+            <div class="mkh-modal-box">
                 <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
-                
-                <div class="mkh-logo-anim" style="width:80px;height:80px;margin:0 auto 12px auto;border-radius:50%;box-shadow:0 0 30px rgba(255,30,30,1);overflow:hidden;">
+                <div class="mkh-logo-anim">
                     <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
                 </div>
-                <div style="font-size:16px;font-weight:900;color:#ff1e1e;margin-bottom:4px;text-shadow:0 0 12px rgba(255,30,30,0.9);">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
+                <div style="font-size:15px;font-weight:900;color:#ff1e1e;margin-bottom:4px;text-shadow:0 0 10px rgba(255,30,30,0.8);">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
+                <h3 style="color:#ff1e1e;margin-bottom:8px;font-size:17px;font-weight:900;">VIP ACCESS LOCKED ❌</h3>
+                <p style="font-size:12px;color:#bbb;margin-bottom:15px;">Your device is not authorized.</p>
                 
-                <h3 style="color:#ff1e1e;margin-bottom:8px;font-size:18px;font-weight:900;text-shadow:0 0 10px rgba(255,30,30,0.6);">VIP ACCESS LOCKED ❌</h3>
-                <p style="font-size:13px;color:#bbb;margin-bottom:20px;">Your device is not authorized.</p>
-                
-                <div id="__mkh_copy_box" style="background:#080202;border:1.5px dashed #ff1e1e;border-radius:16px;padding:14px;font-family:monospace;font-size:15px;color:#ff1e1e;font-weight:bold;margin-bottom:18px;letter-spacing:1px;cursor:pointer;box-shadow:0 0 12px rgba(255,30,30,0.4);" title="Click to copy ID">
+                <div id="__mkh_copy_box" style="background:#080202;border:1.5px dashed #ff1e1e;border-radius:14px;padding:12px;font-family:monospace;font-size:14px;color:#ff1e1e;font-weight:bold;margin-bottom:15px;cursor:pointer;" title="Click to copy ID">
                     ${deviceId}
                 </div>
                 
-                <a href="https://t.me/MK_HACKER586" target="_blank" style="display:block;background:#080202;border:1.5px dashed #ff1e1e;border-radius:16px;padding:14px;font-family:monospace;font-size:13px;color:#ff1e1e;font-weight:bold;margin-bottom:18px;text-decoration:none;box-shadow:0 0 15px rgba(255, 30, 30, 0.5);">
+                <a href="https://t.me/MK_HACKER586" target="_blank" style="display:block;background:#080202;border:1.5px dashed #ff1e1e;border-radius:14px;padding:12px;font-family:monospace;font-size:12px;color:#ff1e1e;font-weight:bold;margin-bottom:15px;text-decoration:none;">
                     ❌ NOT ACCESS - CONTACT TO GET ACCESS
                 </a>
                 
-                <button id="__mkh_activate_btn" class="mkh-btn-action" style="margin-bottom:15px;">ACTIVATE SCRIPT 🚀</button>
-                
-                <div style="font-size:12px;color:#888;margin-top:12px;font-weight:bold;">
-                    Developed By <a href="https://t.me/MK_HACKER586" target="_blank" style="color:#ff1e1e;text-decoration:none;">@MK_HACKER</a>
-                </div>
+                <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
             </div>`;
             
             setTimeout(() => {
@@ -167,7 +175,6 @@
                     actBtn.onclick = function(){
                         let btn = this;
                         btn.innerText = "VERIFYING...";
-                        
                         fetch(`https://mk-hacker-access-bot.vercel.app/check-device?device_id=${deviceId}`)
                         .then(res => res.json())
                         .then(data => {
@@ -181,7 +188,7 @@
                                 showToast("DEVICE NOT AUTHORIZED ❌", false);
                             }
                         })
-                        .catch(err => {
+                        .catch(() => {
                             btn.innerText = "ACTIVATE SCRIPT 🚀";
                             showToast("CONNECTION ERROR ❌", false);
                         });
@@ -189,97 +196,159 @@
                 }
             }, 50);
         } else {
-            l.innerHTML = `
-            <div class="mkh-modal-box" style="background:#120505;border:2px solid #ff1e1e;border-radius:26px;padding:20px;width:90%;max-width:390px;text-align:center;color:#fff;position:relative;max-height:90vh;overflow-y:auto;">
-                <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
-                
-                <div class="mkh-logo-anim" style="width:65px;height:65px;margin:0 auto 6px auto;border-radius:50%;box-shadow:0 0 30px rgba(255,30,30,1);overflow:hidden;">
-                    <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
-                </div>
-                
-                <h4 style="color:#ff1e1e;margin:0 0 2px 0;font-size:13px;font-weight:900;text-shadow:0 0 10px rgba(255,30,30,0.8);">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h4>
-                <h3 style="margin:0 0 10px 0;font-size:15px;font-weight:900;text-shadow:0 0 10px rgba(255,30,30,0.6);">PRO MULTI-MODULE SYSTEM</h3>
+            // DETECT PAGE CONTEXT (Main, WinLoss, Payments, Leaderboard based on URL or DOM elements)
+            let currentUrl = window.location.href;
+            let panelType = "main";
 
-                <div style="display:flex;gap:5px;margin-bottom:12px;">
-                    <button class="mkh-tab-btn" data-tab="main" style="flex:1;background:#8b0000;color:#fff;border:1px solid #ff1e1e;padding:8px;border-radius:8px;font-size:10px;font-weight:bold;cursor:pointer;">VIP MAIN</button>
-                    <button class="mkh-tab-btn" data-tab="winloss" style="flex:1;background:#1a0808;color:#ff1e1e;border:1px solid #ff1e1e;padding:8px;border-radius:8px;font-size:10px;font-weight:bold;cursor:pointer;">WIN/LOSS</button>
-                    <button class="mkh-tab-btn" data-tab="payments" style="flex:1;background:#1a0808;color:#ff1e1e;border:1px solid #ff1e1e;padding:8px;border-radius:8px;font-size:10px;font-weight:bold;cursor:pointer;">PAYMENTS</button>
-                    <button class="mkh-tab-btn" data-tab="leaderboard" style="flex:1;background:#1a0808;color:#ff1e1e;border:1px solid #ff1e1e;padding:8px;border-radius:8px;font-size:10px;font-weight:bold;cursor:pointer;">LEADERBOARD</button>
-                </div>
+            if(currentUrl.includes("payment") || d.body.innerText.includes("Payments") || d.body.innerText.includes("Deposit")) {
+                panelType = "payments";
+            } else if(currentUrl.includes("leaderboard") || d.body.innerText.includes("Leaderboard") || d.body.innerText.includes("Rating")) {
+                panelType = "leaderboard";
+            } else if(currentUrl.includes("trade") || d.body.innerText.includes("Trades") || d.body.innerText.includes("Payout")) {
+                panelType = "winloss";
+            }
 
-                <div id="__mkh_tab_content" style="text-align:left;margin-bottom:12px;">
-                    <div>
-                        <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">USER</label>
-                        <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈" readonly>
-                        <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">ID & EMAIL</label>
-                        <input type="text" class="mkh-input-field" value="12345678 | m.khacker586@gmail.com" readonly>
-                        <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">START PROFIT / BALANCE</label>
-                        <input type="text" id="__mkh_input_profit" class="mkh-input-field" value="10000">
+            if(panelType === "payments") {
+                // PAYMENTS PANEL (Jaise image 38814.jpg mein hai)[span_7](start_span)[span_7](end_span)
+                l.innerHTML = `
+                <div class="mkh-modal-box">
+                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
+                    <div class="mkh-logo-anim">
+                        <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
                     </div>
-                </div>
+                    <h4 style="color:#ff1e1e;margin:0 0 2px 0;font-size:13px;font-weight:900;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h4>
+                    <h3 style="margin:0 0 10px 0;font-size:15px;font-weight:900;">PAYMENTS SYSTEM</h3>
+                    
+                    <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
+                        <label>LIVE BALANCE</label>
+                        <input type="text" class="mkh-input-field" id="__mkh_pay_bal" value="5680.23">
+                        <label>AMOUNT</label>
+                        <input type="text" class="mkh-input-field" id="__mkh_pay_amt" value="1500">
+                        <label>WITHDRAWAL/DEPOSIT (W/D)</label>
+                        <input type="text" class="mkh-input-field" id="__mkh_pay_type" value="W">
+                        <label>PENDING/SUCCESS/CANCEL (P/S/C)</label>
+                        <input type="text" class="mkh-input-field" id="__mkh_pay_status" value="p">
+                        <label>BINANCE/USDT (B)</label>
+                        <input type="text" class="mkh-input-field" id="__mkh_pay_binance" value="b">
+                        <label>TXID</label>
+                        <input type="text" class="mkh-input-field" value="42739016205">
+                    </div>
 
-                <button id="__mkh_activate_script" class="mkh-btn-action" style="margin-bottom:10px;">ACTIVATE SCRIPT 🚀</button>
-
-                <div style="background:#080202;border-radius:12px;padding:8px;font-size:11px;color:#aaa;border:1px solid #ff1e1e;box-shadow:0 0 15px rgba(255,30,30,0.3);margin-bottom:8px;">
-                    STATUS: <span style="color:#00ff66;font-weight:bold;">ENJOY & UNLOCKED SUCCESSFULLY!</span>
-                </div>
-
-                <div style="border-top: 1px dashed #ff1e1e; padding-top: 6px;">
+                    <button id="__mkh_run_pay" class="mkh-btn-action">RUN MAGIC ✨</button>
+                    <div style="margin-top:8px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
+                    <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">✨ ENJOY THE PRO VERSION! ✨</div>
                     <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
                     <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
-                </div>
-            </div>`;
-
-            setTimeout(() => {
-                const tabs = d.querySelectorAll('.mkh-tab-btn');
-                const content = d.getElementById('__mkh_tab_content');
-
-                tabs.forEach(tab => {
-                    tab.onclick = function(){
-                        tabs.forEach(t => { t.style.background = '#1a0808'; t.style.color = '#ff1e1e'; });
-                        this.style.background = '#8b0000';
-                        this.style.color = '#fff';
-
-                        let tName = this.getAttribute('data-tab');
-                        if(tName === 'main'){
-                            content.innerHTML = `
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">USER</label>
-                                <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈" readonly>
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">ID & EMAIL</label>
-                                <input type="text" class="mkh-input-field" value="12345678 | m.khacker586@gmail.com" readonly>
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">START PROFIT / BALANCE</label>
-                                <input type="text" id="__mkh_input_profit" class="mkh-input-field" value="10000">`;
-                        } else if(tName === 'winloss'){
-                            content.innerHTML = `
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">WIN / LOSS SHORTCUT (W / L)</label>
-                                <input type="text" id="__mkh_wl_type" class="mkh-input-field" value="W">
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">PROFIT / LOSS PERCENTAGE (%)</label>
-                                <input type="text" id="__mkh_wl_percent" class="mkh-input-field" value="95">`;
-                        } else if(tName === 'payments'){
-                            content.innerHTML = `
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">TYPE (DEPOSIT / WITHDRAWAL)</label>
-                                <input type="text" id="__mkh_pay_type" class="mkh-input-field" value="Withdrawal">
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">AMOUNT ($)</label>
-                                <input type="text" id="__mkh_pay_amount" class="mkh-input-field" value="1500">
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">BINANCE ADDRESS / TXID</label>
-                                <input type="text" id="__mkh_pay_tx" class="mkh-input-field" value="42739016205">`;
-                        } else if(tName === 'leaderboard'){
-                            content.innerHTML = `
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">LEADERBOARD NAME</label>
-                                <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈" readonly>
-                                <label style="font-size:10px;color:#ff1e1e;font-weight:bold;">PROFIT / LOSS AMOUNT ($)</label>
-                                <input type="text" id="__mkh_lb_profit" class="mkh-input-field" value="10000">`;
-                        }
+                </div>`;
+                setTimeout(() => {
+                    d.getElementById('__mkh_run_pay').onclick = function(){
+                        showToast("PAYMENT SYSTEM EXECUTED ✓", true);
                     };
-                });
+                }, 50);
 
-                const actScriptBtn = d.getElementById('__mkh_activate_script');
-                if(actScriptBtn){
-                    actScriptBtn.onclick = function(){
-                        showToast("SCRIPT ACTIVATED SUCCESSFULLY ✓ ENJOY!", true);
+            } else if(panelType === "winloss") {
+                // WIN/LOSS PANEL (Jaise image 38812.jpg mein hai)[span_8](start_span)[span_8](end_span)
+                l.innerHTML = `
+                <div class="mkh-modal-box">
+                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
+                    <div class="mkh-logo-anim">
+                        <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <h4 style="color:#ff1e1e;margin:0 0 2px 0;font-size:13px;font-weight:900;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h4>
+                    <h3 style="margin:0 0 15px 0;font-size:15px;font-weight:900;">TRADE SYSTEM</h3>
+                    
+                    <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
+                        <label>PERCENT (%)</label>
+                        <input type="text" class="mkh-input-field" id="__mkh_trade_pct" value="93">
+                    </div>
+
+                    <button id="__mkh_run_trade" class="mkh-btn-action">RUN MAGIC ✨</button>
+                    <div style="margin-top:10px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
+                    <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:6px;">✨ ENJOY THE PRO VERSION! ✨</div>
+                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
+                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
+                </div>`;
+                setTimeout(() => {
+                    d.getElementById('__mkh_run_trade').onclick = function(){
+                        let p = d.getElementById('__mkh_trade_pct').value;
+                        showToast("TRADE WIN RATE SET TO " + p + "% ✓", true);
                     };
-                }
-            }, 50);
+                }, 50);
+
+            } else if(panelType === "leaderboard") {
+                // LEADERBOARD PANEL (Jaise image 38816.jpg mein hai)[span_9](start_span)[span_9](end_span)
+                l.innerHTML = `
+                <div class="mkh-modal-box">
+                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
+                    <div class="mkh-logo-anim">
+                        <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <h4 style="color:#ff1e1e;margin:0 0 2px 0;font-size:13px;font-weight:900;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h4>
+                    <h3 style="margin:0 0 10px 0;font-size:15px;font-weight:900;">PROFIT/LOSS SYSTEM</h3>
+                    
+                    <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
+                        <label>COUNTRY</label>
+                        <input type="text" class="mkh-input-field" value="PAKISTAN" readonly>
+                        <label>USER</label>
+                        <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈" readonly>
+                        <label>AMOUNT</label>
+                        <input type="text" class="mkh-input-field" value="987">
+                        <label>LENGTH</label>
+                        <input type="text" class="mkh-input-field" value="100">
+                        <label>POSITION</label>
+                        <input type="text" class="mkh-input-field" value="100+">
+                        <label>PROFIT/LOSS (P/L)</label>
+                        <input type="text" class="mkh-input-field" value="p">
+                    </div>
+
+                    <button id="__mkh_run_lb" class="mkh-btn-action">RUN MAGIC ✨</button>
+                    <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
+                    <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">✨ ENJOY THE PRO VERSION! ✨</div>
+                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
+                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
+                </div>`;
+                setTimeout(() => {
+                    d.getElementById('__mkh_run_lb').onclick = function(){
+                        showToast("LEADERBOARD DATA APPLIED ✓", true);
+                    };
+                }, 50);
+
+            } else {
+                // MAIN MOBILE SYSTEM PANEL (Jaise video 38145.mp4 mein shuru mein hai)[span_10](start_span)[span_10](end_span)
+                l.innerHTML = `
+                <div class="mkh-modal-box">
+                    <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
+                    <div class="mkh-logo-anim">
+                        <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <h4 style="color:#ff1e1e;margin:0 0 2px 0;font-size:13px;font-weight:900;">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</h4>
+                    <h3 style="margin:0 0 10px 0;font-size:15px;font-weight:900;">MOBILE MAIN SYSTEM</h3>
+                    
+                    <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
+                        <label>PAKISTAN</label>
+                        <input type="text" class="mkh-input-field" value="PAKISTAN" readonly>
+                        <label>USER</label>
+                        <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈">
+                        <label>ID</label>
+                        <input type="text" class="mkh-input-field" value="12345678">
+                        <label>EMAIL</label>
+                        <input type="text" class="mkh-input-field" value="m.khacker586@gmail.com">
+                        <label>START PROFIT</label>
+                        <input type="text" class="mkh-input-field" id="__mkh_start_prof" value="0">
+                    </div>
+
+                    <button id="__mkh_run_main" class="mkh-btn-action">RUN MAGIC ✨</button>
+                    <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
+                    <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">✨ ENJOY THE PRO VERSION! ✨</div>
+                    <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
+                    <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
+                </div>`;
+                setTimeout(() => {
+                    d.getElementById('__mkh_run_main').onclick = function(){
+                        showToast("MOBILE SYSTEM ACTIVATED ✓ ENJOY!", true);
+                    };
+                }, 50);
+            }
         }
     }
 
@@ -299,7 +368,7 @@
             l.style.display = 'flex';
         }, 900);
     })
-    .catch(err => {
+    .catch(() => {
         setTimeout(() => {
             loaderDiv.remove();
             renderModal();
