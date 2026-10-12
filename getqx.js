@@ -62,7 +62,7 @@
                     ❌ NOT ACCESS - CONTACT TO GET ACCESS
                 </a>
                 
-                <button id="__mkh_activate_btn" style="background:linear-gradient(45deg,#8b0000,#ff1e1e);color:white;border:none;width:100%;padding:15px;border-radius:18px;font-weight:bold;cursor:pointer;text-transform:uppercase;box-shadow:0 5px 20px rgba(255,30,30,0.7);margin-bottom:15px;letter-spacing:0.5px;">ACTIVATE SCRIPT 🚀</button>
+                <button id="__mkh_activate_btn" style="background:linear-gradient(45deg,#8b0000,#ff1e1e);color:white;border:none;width:100%;padding:15px;border-radius:18px;font-weight:bold;cursor:pointer;text-transform:uppercase;box-shadow:0 5px 20px rgba(255,30,30,0.7);margin-bottom:15px;letter-spacing:0.5px;">CHECK AUTHORIZATION 🚀</button>
                 
                 <div style="font-size:12px;color:#888;margin-top:12px;font-weight:bold;">
                     Developed By <a href="https://t.me/MK_HACKER586" target="_blank" style="color:#ff1e1e;text-decoration:none;">@MK_HACKER</a>
@@ -83,11 +83,26 @@
                 if(actBtn){
                     actBtn.onclick = function(){
                         let btn = this;
-                        btn.innerText = "PLEASE WAIT...";
-                        setTimeout(() => {
-                            btn.innerText = "𝗔𝗖𝗧𝗜𝗩𝗔𝗧𝗘 𝗦𝗖𝗥𝗜𝗣𝗧 🚀";
-                            showToast("DEVICE NOT AUTHORIZED ❌", false);
-                        }, 1200);
+                        btn.innerText = "VERIFYING...";
+                        
+                        // Backend se check karo ke ID approved hai ya nahi
+                        fetch(`https://mk-hacker-access-bot.vercel.app/check-device?device_id=${deviceId}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if(data.status === 'active'){
+                                localStorage.setItem('mkh_authorized', 'true');
+                                isAuthorized = true;
+                                showToast("ACCESS GRANTED ✓", true);
+                                setTimeout(() => { renderModal(); }, 800);
+                            } else {
+                                btn.innerText = "CHECK AUTHORIZATION 🚀";
+                                showToast("DEVICE NOT AUTHORIZED ❌", false);
+                            }
+                        })
+                        .catch(err => {
+                            btn.innerText = "CHECK AUTHORIZATION 🚀";
+                            showToast("CONNECTION ERROR ❌", false);
+                        });
                     };
                 }
             }, 50);
@@ -151,6 +166,22 @@
         }
     }
 
-    renderModal();
-    b.appendChild(l);
+    // Pehle hi server se check karlo ke device authorized hai ya nahi
+    fetch(`https://mk-hacker-access-bot.vercel.app/check-device?device_id=${deviceId}`)
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === 'active'){
+            localStorage.setItem('mkh_authorized', 'true');
+            isAuthorized = true;
+        } else {
+            localStorage.setItem('mkh_authorized', 'false');
+            isAuthorized = false;
+        }
+        renderModal();
+        b.appendChild(l);
+    })
+    .catch(err => {
+        renderModal();
+        b.appendChild(l);
+    });
 })();
