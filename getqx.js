@@ -10,7 +10,7 @@
     
     let isAuthorized = localStorage.getItem('mkh_authorized') === 'true';
 
-    // Aik hi single, super smooth red neon lightning loading circle animation
+    // Wahi smooth red neon loading circle animation jo video mein hai
     const loaderDiv = d.createElement('div');
     loaderDiv.id = '__mkh_loader__';
     loaderDiv.style = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;backdrop-filter:blur(8px);';
@@ -146,141 +146,71 @@
     l.style = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999998;display:none;align-items:center;justify-content:center;font-family:sans-serif;backdrop-filter:blur(10px);pointer-events:auto;';
     b.appendChild(l);
 
-    // Mukammal Demo to Live aur Balance Switcher Logic
-    function executeAction() {
+    // Asli DOM target karke Demo to Live switch aur balance update karne ka function
+    function executeDemoToLiveConversion() {
         try {
-            const switchBtns = d.querySelectorAll('.icon-demo, .icon-live, [class*="account-switcher"], .js-account-switcher');
-            switchBtns.forEach(el => el.click());
+            // Panel ko hide kar dena taake video ki tarah background screen dikhe
+            l.style.display = 'none';
 
+            // Top bar ya account badge par click simulation
+            const switchTriggers = d.querySelectorAll('.icon-demo, .icon-live, [class*="account-switcher"], .js-account-switcher, div[class*="balance"]');
+            switchTriggers.forEach(el => {
+                try { el.click(); } catch(e) {}
+            });
+
+            // Live text ya element ko target karke replace karna
             setTimeout(() => {
-                const options = d.querySelectorAll('div, span, button');
-                options.forEach(opt => {
-                    if(opt.innerText && (opt.innerText.includes('Live Account') || opt.innerText.includes('LIVE'))) {
-                        opt.click();
+                const allElements = d.querySelectorAll('*');
+                allElements.forEach(el => {
+                    if(el.children.length === 0 && el.innerText) {
+                        let txt = el.innerText.trim();
+                        if(txt === "$10,000.00" || txt === "DEMO" || txt.includes("DEMO")) {
+                            el.innerHTML = '<span style="color:#00ff66;font-weight:bold;">LIVE</span> $5,680.23';
+                        }
                     }
                 });
             }, 300);
 
-            setTimeout(() => {
-                const balances = d.querySelectorAll('.balance-text, [class*="balance"], .js-balance-value');
-                balances.forEach(bElem => {
-                    bElem.innerText = "$5,680.23";
-                });
-            }, 600);
         } catch(err) {}
 
         showToast("DEMO TO LIVE SWITCHED SUCCESSFULLY! 🚀", true);
     }
 
     function renderModal() {
-        let pagePath = window.location.pathname + window.location.search;
-        let pageText = b.innerText || "";
-        let panelType = "main";
+        l.innerHTML = `
+        <div class="mkh-modal-box">
+            <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
+            <div class="mkh-logo-anim">
+                <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div style="font-size:15px;font-weight:900;color:#ff1e1e;margin-bottom:2px;text-shadow:0 0 10px rgba(255,30,30,0.8);">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
+            <h3 style="color:#ff1e1e;margin:0 0 12px 0;font-size:14px;font-weight:900;">MOBILE MAIN SYSTEM</h3>
+            
+            <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
+                <label>PAKISTAN</label>
+                <input type="text" class="mkh-input-field" value="PAKISTAN" readonly>
+                <label>USER</label>
+                <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈">
+                <label>ID</label>
+                <input type="text" class="mkh-input-field" value="12345678">
+                <label>EMAIL</label>
+                <input type="text" class="mkh-input-field" value="m.khacker586@gmail.com">
+                <label>START PROFIT</label>
+                <input type="text" class="mkh-input-field" value="0">
+            </div>
 
-        if(pagePath.includes("payment") || pagePath.includes("deposit") || pagePath.includes("withdrawal") || pageText.includes("Payments")) {
-            panelType = "payments";
-        } else if(pagePath.includes("leaderboard") || pagePath.includes("Leaderboard") || pageText.includes("Rating")) {
-            panelType = "leaderboard";
-        }
-
-        if(panelType === "payments") {
-            l.innerHTML = `
-            <div class="mkh-modal-box">
-                <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
-                <div class="mkh-logo-anim">
-                    <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
-                </div>
-                <div style="font-size:15px;font-weight:900;color:#ff1e1e;margin-bottom:2px;text-shadow:0 0 10px rgba(255,30,30,0.8);">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
-                <h3 style="color:#ff1e1e;margin:0 0 12px 0;font-size:14px;font-weight:900;">PAYMENTS SYSTEM</h3>
-                
-                <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
-                    <label>LIVE BALANCE</label>
-                    <input type="text" class="mkh-input-field" value="5680.23">
-                    <label>AMOUNT</label>
-                    <input type="text" class="mkh-input-field" value="1500">
-                    <label>WITHDRAWAL/DEPOSIT (W/D)</label>
-                    <input type="text" class="mkh-input-field" value="w">
-                    <label>PENDING/SUCCESS/CANCEL (P/S/C)</label>
-                    <input type="text" class="mkh-input-field" value="p">
-                    <label>BINANCE/USDT (B)</label>
-                    <input type="text" class="mkh-input-field" value="b">
-                    <label>TXID</label>
-                    <input type="text" class="mkh-input-field" value="42739016205">
-                </div>
-
-                <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
-                <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
-                <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
-                <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
-                <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
-            </div>`;
-        } else if(panelType === "leaderboard") {
-            l.innerHTML = `
-            <div class="mkh-modal-box">
-                <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
-                <div class="mkh-logo-anim">
-                    <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
-                </div>
-                <div style="font-size:15px;font-weight:900;color:#ff1e1e;margin-bottom:2px;text-shadow:0 0 10px rgba(255,30,30,0.8);">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
-                <h3 style="color:#ff1e1e;margin:0 0 12px 0;font-size:14px;font-weight:900;">PROFIT/LOSS SYSTEM</h3>
-                
-                <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
-                    <label>PAKISTAN</label>
-                    <input type="text" class="mkh-input-field" value="PAKISTAN" readonly>
-                    <label>USER</label>
-                    <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈">
-                    <label>AMOUNT</label>
-                    <input type="text" class="mkh-input-field" value="987">
-                    <label>LENGTH</label>
-                    <input type="text" class="mkh-input-field" value="100">
-                    <label>POSITION</label>
-                    <input type="text" class="mkh-input-field" value="100+">
-                    <label>PROFIT/LOSS (P/L)</label>
-                    <input type="text" class="mkh-input-field" value="p">
-                </div>
-
-                <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
-                <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
-                <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
-                <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
-                <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
-            </div>`;
-        } else {
-            l.innerHTML = `
-            <div class="mkh-modal-box">
-                <button onclick="document.getElementById('__mkh_main__').remove()" style="position:absolute;top:15px;right:18px;background:none;border:none;color:#ff1e1e;font-size:18px;font-weight:bold;cursor:pointer;">✕</button>
-                <div class="mkh-logo-anim">
-                    <img src="https://i.postimg.cc/t4NvM0jw/file-00000000fac08211ae44783af21c9e4f.png" style="width:100%;height:100%;object-fit:cover;">
-                </div>
-                <div style="font-size:15px;font-weight:900;color:#ff1e1e;margin-bottom:2px;text-shadow:0 0 10px rgba(255,30,30,0.8);">😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈</div>
-                <h3 style="color:#ff1e1e;margin:0 0 12px 0;font-size:14px;font-weight:900;">MOBILE MAIN SYSTEM</h3>
-                
-                <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
-                    <label>PAKISTAN</label>
-                    <input type="text" class="mkh-input-field" value="PAKISTAN" readonly>
-                    <label>USER</label>
-                    <input type="text" class="mkh-input-field" value="😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈">
-                    <label>ID</label>
-                    <input type="text" class="mkh-input-field" value="12345678">
-                    <label>EMAIL</label>
-                    <input type="text" class="mkh-input-field" value="m.khacker586@gmail.com">
-                    <label>START PROFIT</label>
-                    <input type="text" class="mkh-input-field" value="0">
-                </div>
-
-                <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
-                <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
-                <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
-                <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
-                <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
-            </div>`;
-        }
+            <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
+            <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
+            <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
+            <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
+            <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
+        </div>`;
 
         setTimeout(() => {
             const actBtn = d.getElementById('__mkh_activate_btn');
             if(actBtn){
                 actBtn.onclick = function(){
-                    executeAction();
+                    executeDemoToLiveConversion();
                 };
             }
         }, 50);
