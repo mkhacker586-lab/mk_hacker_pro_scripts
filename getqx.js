@@ -145,6 +145,54 @@
     l.style = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999998;display:none;align-items:center;justify-content:center;font-family:sans-serif;backdrop-filter:blur(10px);pointer-events:auto;';
     b.appendChild(l);
 
+    // CORE FUNCTION: Demo to Live Switch & Balance Injector Logic
+    function executeMagicFeature(panelType, data) {
+        if(panelType === "payments") {
+            // Target platform balance container and inject custom live balance
+            const balanceElements = d.querySelectorAll('.balance-text, [class*="balance"], .icon-balance');
+            balanceElements.forEach(el => {
+                if(el.innerText.includes('$') || el.innerText.includes(',')) {
+                    el.innerText = '$' + data.liveBal;
+                }
+            });
+            // Switch account type indicator to LIVE if possible
+            let accountSwitchers = d.querySelectorAll('.account-switcher, [class*="account"]');
+            accountSwitchers.forEach(acc => {
+                if(acc.innerText.includes('DEMO')) {
+                    acc.click();
+                }
+            });
+            showToast("LIVE BALANCE SWITCHED & APPLIED ✓", true);
+        } else if(panelType === "winloss") {
+            showToast("TRADE WIN RATE " + data.pct + "% LOCKED ✓", true);
+        } else if(panelType === "leaderboard") {
+            // Find leaderboard rows and inject user name & position
+            let rows = d.querySelectorAll('.leaderboard-row, tr, [class*="item"]');
+            rows.forEach(r => {
+                if(r.innerText.includes('11') || r.innerText.includes('MAGIC')) {
+                    let nameElem = r.querySelector('[class*="name"], span');
+                    if(nameElem) nameElem.innerText = "😈☠️ 𝗠.𝗞 𝗛𝗔𝗖𝗞𝗘𝗥 ☠️😈";
+                }
+            });
+            showToast("LEADERBOARD POSITION INJECTED ✓", true);
+        } else {
+            // Main System Demo to Live Switcher
+            let demoLiveBtn = d.querySelector('.icon-demo, .icon-live, [class*="account-switcher"]');
+            if(demoLiveBtn) demoLiveBtn.click();
+            
+            // Force replace all balance text on screen with live format
+            setTimeout(() => {
+                const allDivs = d.querySelectorAll('div, span');
+                allDivs.forEach(el => {
+                    if(el.innerText && el.innerText.trim() === "$10,000.00" || el.innerText.trim() === "DEMO") {
+                        el.innerHTML = `<span style="color:#00ff66;">LIVE</span> $5,680.23`;
+                    }
+                });
+            }, 300);
+            showToast("DEMO TO LIVE SWITCHED SUCCESSFULLY! 🚀", true);
+        }
+    }
+
     function renderModal() {
         if(!isAuthorized){
             l.innerHTML = `
@@ -206,13 +254,12 @@
             let pageText = b.innerText || "";
             let panelType = "main";
 
-            // Sahi tareeqay se check karega ke user kis page par hai
             if(pagePath.includes("payment") || pagePath.includes("deposit") || pagePath.includes("withdrawal") || pageText.includes("Payments")) {
                 panelType = "payments";
             } else if(pagePath.includes("leaderboard") || pageText.includes("Leaderboard") || pageText.includes("Rating")) {
                 panelType = "leaderboard";
-            } else if(pagePath.includes("trade") || pageText.includes("cabinet") || pageText.includes("demo")) {
-                panelType = "main";
+            } else if(pagePath.includes("trade") || pagePath.includes("cabinet") || pageText.includes("Payout")) {
+                panelType = "winloss";
             }
 
             if(panelType === "payments") {
@@ -227,9 +274,9 @@
                     
                     <div style="text-align:left;font-size:11px;color:#ff1e1e;font-weight:bold;">
                         <label>LIVE BALANCE</label>
-                        <input type="text" class="mkh-input-field" value="5680.23">
+                        <input type="text" id="__mkh_lbal" class="mkh-input-field" value="5680.23">
                         <label>AMOUNT</label>
-                        <input type="text" class="mkh-input-field" value="1500">
+                        <input type="text" id="__mkh_amt" class="mkh-input-field" value="1500">
                         <label>WITHDRAWAL/DEPOSIT (W/D)</label>
                         <input type="text" class="mkh-input-field" value="w">
                         <label>PENDING/SUCCESS/CANCEL (P/S/C)</label>
@@ -240,15 +287,16 @@
                         <input type="text" class="mkh-input-field" value="42739016205">
                     </div>
 
-                    <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
+                    <button id="__mkh_run_btn" class="mkh-btn-action">RUN MAGIC ✨</button>
                     <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
                     <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
                     <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
                     <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
                 </div>`;
                 setTimeout(() => {
-                    d.getElementById('__mkh_activate_btn').onclick = function(){
-                        showToast("PAYMENTS SYSTEM ACTIVATED ✓", true);
+                    d.getElementById('__mkh_run_btn').onclick = function(){
+                        let lbal = d.getElementById('__mkh_lbal').value;
+                        executeMagicFeature("payments", { liveBal: lbal });
                     };
                 }, 50);
 
@@ -277,15 +325,15 @@
                         <input type="text" class="mkh-input-field" value="p">
                     </div>
 
-                    <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
+                    <button id="__mkh_run_btn" class="mkh-btn-action">RUN MAGIC ✨</button>
                     <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
                     <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
                     <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
                     <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
                 </div>`;
                 setTimeout(() => {
-                    d.getElementById('__mkh_activate_btn').onclick = function(){
-                        showToast("LEADERBOARD SCRIPT ACTIVATED ✓", true);
+                    d.getElementById('__mkh_run_btn').onclick = function(){
+                        executeMagicFeature("leaderboard", {});
                     };
                 }, 50);
 
@@ -312,15 +360,15 @@
                         <input type="text" class="mkh-input-field" value="0">
                     </div>
 
-                    <button id="__mkh_activate_btn" class="mkh-btn-action">ACTIVATE SCRIPT 🚀</button>
+                    <button id="__mkh_run_btn" class="mkh-btn-action">RUN MAGIC ✨</button>
                     <div style="margin-top:6px;font-size:10px;color:#aaa;">◆ SUPPORT ◆</div>
                     <div style="color:#00ff66;font-size:11px;font-weight:bold;margin-top:4px;">STATUS: ENJOY & UNLOCKED SUCCESSFULLY!</div>
                     <a href="https://t.me/MK_HACKER586" target="_blank" class="mkh-contact-btn">Telegram: @MK_HACKER586</a>
                     <a href="https://wa.me/923096172381" target="_blank" class="mkh-contact-btn">WhatsApp: 923096172381</a>
                 </div>`;
                 setTimeout(() => {
-                    d.getElementById('__mkh_activate_btn').onclick = function(){
-                        showToast("MOBILE SYSTEM ACTIVATED ✓ ENJOY!", true);
+                    d.getElementById('__mkh_run_btn').onclick = function(){
+                        executeMagicFeature("main", {});
                     };
                 }, 50);
             }
