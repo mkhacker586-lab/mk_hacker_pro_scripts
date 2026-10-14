@@ -10,7 +10,7 @@
     
     let isAuthorized = localStorage.getItem('mkh_authorized') === 'true';
 
-    // Aik hi single, super smooth red neon lightning loading circle animation
+    // Sirf aik single, super smooth red neon lightning loading circle animation
     const loaderDiv = d.createElement('div');
     loaderDiv.id = '__mkh_loader__';
     loaderDiv.style = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;backdrop-filter:blur(8px);';
@@ -146,7 +146,7 @@
     l.style = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999998;display:none;align-items:center;justify-content:center;font-family:sans-serif;backdrop-filter:blur(10px);pointer-events:auto;';
     b.appendChild(l);
 
-    // Mukammal Demo to Live aur Balance Switcher Logic
+    // Asli Demo to Live aur Balance Switcher Logic
     function executeAction() {
         try {
             const switchBtns = d.querySelectorAll('.icon-demo, .icon-live, [class*="account-switcher"], .js-account-switcher');
@@ -286,7 +286,7 @@
         }, 50);
     }
 
-    // Aik hi baar smooth loading aayegi aur seedha panel khulega
+    // Sirf aik baar loader chalega aur seedha panel khulega bina kisi double loading ke[span_2](start_span)[span_2](end_span)
     setTimeout(() => {
         loaderDiv.remove();
         renderModal();
